@@ -4,14 +4,17 @@ import TableHead from './TableHead';
 import TableRow from './TableRow';
 import Container from 'react-bootstrap/esm/Container';
 
-function FoodTable({data}) {
+function FoodTable({data, handleModal, setModalType}) {
     return (
         <Container>
             <Table bordered striped hover className='m-auto w-75'>
                 <TableHead />
                 <tbody>
                     {data.map((item) => 
-                        (<TableRow key={uuidv4()} date={item.date} cost={item.cost} />)
+                        (<TableRow key={uuidv4()}
+                            report={item}
+                            handleModal={handleModal}
+                            setModalType={setModalType} />)
                     )}
                 </tbody>
             </Table>

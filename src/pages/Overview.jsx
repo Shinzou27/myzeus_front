@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container"
-import TableFilter from "../components/TableFilter"
+import TableFilter from "../components/Table/TableFilter"
 import FoodTable from "../components/Table/FoodTable"
 import ReportModal from "../components/Report/ReportModal"
 import Button from "react-bootstrap/esm/Button"

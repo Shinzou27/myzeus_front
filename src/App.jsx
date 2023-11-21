@@ -1,4 +1,5 @@
-import NavBar from './components/NavBar'
+import NavBar from './components/Fixed/NavBar'
+import Footer from './components/Fixed/Footer'
 import { Outlet } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
@@ -9,6 +10,7 @@ function App() {
     <div className='App'>
       <NavBar/>
       <Outlet/>
+      <Footer/>
     </div>
   )
 }

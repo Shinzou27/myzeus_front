@@ -10,8 +10,13 @@ function Welcome({ user }) {
     return (
         <Container className='w-50'>
             <Container className='mb-3 mt-5 pt-5'>
-                {user ? <h1>Olá, <span id='highlight'>{JSON.parse(window.localStorage.getItem('user')).username}</span>!</h1> : <h1>Lorem ipsum <span id='highlight'>dolor</span> sit</h1>}
-                {user ? <p className='my-5'>Comece a gerenciar seus gastos agora!</p> : <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, totam.</p>}
+                {user ? <>
+                    <h1>Olá, <span id='highlight'>{user.username}</span>!</h1>
+                    <p className='my-5'>Comece a gerenciar seus gastos agora!</p>
+                </> : <>
+                    <h1>Bem-vindo!</h1>
+                    <p>Entre ou crie sua conta agora mesmo!</p>
+                </>}
             </Container>
             {user && <Container>
                 <Row>

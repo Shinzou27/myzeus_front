@@ -4,10 +4,11 @@ import Feedback from '../components/Home/Feedback'
 import Background from '../components/Fixed/Background'
 
 function Home() {
+  const user = JSON.parse(window.localStorage.getItem('user'));
   return (
     <Container>
       <Container className='full-screen'>
-        <Welcome />
+        <Welcome user={user} />
       </Container>
       <Container className='full-screen'>
         <Feedback />

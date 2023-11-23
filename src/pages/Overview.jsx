@@ -8,6 +8,7 @@ import { api } from "../services/api"
 import { useEffect, useState } from "react"
 
 function Overview() {
+    const user = JSON.parse(window.localStorage.getItem('user'));
     const [limits, setLimits] = useState({ start: new Date('2000-01-01'), end: new Date('2099-12-31') });
     const [data, setData] = useState([]);
     const [fixedData, setFixedData] = useState([]);
@@ -41,7 +42,7 @@ function Overview() {
         setData(aux.sort(sortDate));
     }, [limits]);
     useEffect(() => {
-        api.get('/reports').then((response) => {
+        api.get(`/reports?id=${user.id}`).then((response) => {
             setFixedData(response.data.sort(sortDate));
             setData(response.data.sort(sortDate));
             console.log(fixedData);

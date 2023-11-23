@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image'
 
 function NavBar() {
+    const user = JSON.parse(window.localStorage.getItem('user'));
     return (
         <Navbar fixed='top' bg='dark' expand='lg'>
             <Container>
@@ -13,7 +14,7 @@ function NavBar() {
                     <Nav.Link href='/' className='text-light'>Início</Nav.Link>
                     <Nav.Link href='/overview' className='text-light'>Visão Geral</Nav.Link>
                 </Nav>
-                <Nav.Link href='/login' className='text-light ms-auto' > Entrar</Nav.Link>
+                <Nav.Link href='/login' className='text-light ms-auto' > {!user ? 'Entrar' : 'Sair'}</Nav.Link>
             </Container>
         </Navbar>
     )

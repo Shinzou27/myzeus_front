@@ -54,3 +54,24 @@ span {
   max-height: 100%;
   max-width: 100%;
 }
+.dashboard-container {
+  border: 1px solid #00f391;
+  border-radius: 10px;
+}
+.dashboard-summary {
+  height: 480px;
+}
+.dashboard-redirect {
+  height: 60px;
+  justify-content: space-around;
+  align-items: center;
+  line-height: 60px;
+  margin-top: 10px;
+}
+.dashboard-chart {
+  height: 400px;
+  margin-bottom: 10px;
+}
+canvas {
+  max-height: 300px;
+}

@@ -20,9 +20,11 @@ function TableRow({report, handleModal, setModalType}) {
     return ( 
         <>
         <tr>
-            <td id='date-column' className='col-6'onClick={showModal}>{parseDate(report.date)}</td>
-            <td id='cost-column' className='col-5'onClick={showModal}>{`R$${report.cost}`}</td>
-            <td className='col-1'><PencilSquare id='edit' onClick={showModal} className='mx-1 c-pointer'/><Trash id='delete' onClick={showModal} className='mx-1 c-pointer'/></td>
+            <td id='date-column' className='col-3'onClick={showModal}>{parseDate(report.date)}</td>
+            <td id='cost-column' className='col-3'onClick={showModal}>{`R$${report.cost}`}</td>
+            <td id='brand-column' className='col-2' onClick={showModal}>{report.brand}</td>
+            <td id='amount-column' className='col-2' onClick={showModal}>{report.amount}</td>
+            <td className='col-2'><PencilSquare id='edit' onClick={showModal} className='mx-1 c-pointer'/><Trash id='delete' onClick={showModal} className='mx-1 c-pointer'/></td>
         </tr>
         </>
      );

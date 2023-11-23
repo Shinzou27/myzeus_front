@@ -7,13 +7,13 @@ function Home() {
   const user = JSON.parse(window.localStorage.getItem('user'));
   return (
     <Container>
+      <Background color={'1'}/>
       <Container className='full-screen'>
         <Welcome user={user} />
       </Container>
       <Container className='full-screen'>
         <Feedback />
       </Container>
-      <Background color={'1'}/>
     </Container>
   )
 }

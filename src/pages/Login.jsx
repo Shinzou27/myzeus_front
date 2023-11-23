@@ -12,6 +12,7 @@ function Login() {
         api.get(`/users?username=${username}`).then((response) => {
             window.localStorage.setItem('user', JSON.stringify(response.data));
             nav('/');
+            window.location.reload();
         }).catch((e) => console.log(e.message));
     }
     return (

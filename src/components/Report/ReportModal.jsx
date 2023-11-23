@@ -7,9 +7,13 @@ function ReportModal({ report, show, handleClose, type }) {
     function handleEdit() {
         const newDate = new Date(document.getElementById('newDate').value).toISOString();
         const newCost = document.getElementById('newCost').value;
+        const newBrand = document.getElementById('newBrand').value;
+        const newAmount = parseInt(document.getElementById('newAmount').value);
         api.put(`/reports/${report.id}`, {
             date: newDate,
-            cost: newCost
+            cost: newCost,
+            brand: newBrand,
+            amount: newAmount
         }).then((response) => {
             console.log(response.data);
             window.location.reload();
@@ -50,12 +54,20 @@ function ReportModal({ report, show, handleClose, type }) {
             </Modal.Header>
             <Modal.Body>
                 <Row>
-                    <label>Data</label>
+                    <label className='fw-bold'>Data</label>
                     <input type="date" id='newDate' defaultValue={new Date(report.date).toISOString().slice(0, 10)} />
                 </Row>
                 <Row>
-                    <label>Custo</label>
+                    <label className='fw-bold'>Custo</label>
                     <input type="text" id='newCost' defaultValue={report.cost} />
+                </Row>
+                <Row>
+                    <label className='fw-bold'>Marca</label>
+                    <input type="text" id='newBrand' defaultValue={report.brand} />
+                </Row>
+                <Row>
+                    <label className='fw-bold'>Quantidade</label>
+                    <input type="number" id='newAmount' defaultValue={report.amount} />
                 </Row>
             </Modal.Body>
             <Modal.Footer>
@@ -70,12 +82,20 @@ function ReportModal({ report, show, handleClose, type }) {
             </Modal.Header>
             <Modal.Body>
                 <Row>
-                    <label>Data</label>
+                    <label className='fw-bold'>Data</label>
                     <p>{parseDate(report.date)}</p>
                 </Row>
                 <Row>
-                    <label>Custo</label>
+                    <label className='fw-bold'>Custo</label>
                     <p>{report.cost}</p>
+                </Row>
+                <Row>
+                    <label className='fw-bold'>Marca</label>
+                    <p>{report.brand}</p>
+                </Row>
+                <Row>
+                    <label className='fw-bold'>Quantidade (g)</label>
+                    <p>{report.amount}</p>
                 </Row>
             </Modal.Body>
             <Modal.Footer>

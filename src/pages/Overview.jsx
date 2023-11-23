@@ -15,6 +15,7 @@ function Overview() {
     const [highlight, setHighlight] = useState();
     const [modalType, setModalType] = useState('');
     const [show, setShow] = useState(false);
+    const [sorter, setSorter] = useState('date');
     function handleClose() {
         setShow(false)
     };
@@ -34,6 +35,13 @@ function Overview() {
     }
     function sortCost(a, b) {
         return parseFloat(a.cost.replace(',', '.')) - parseFloat(b.cost.replace(',', '.'));
+    }
+    function sortBrand(a, b) {
+        return a.brand.charCodeAt(0) - b.brand.charCodeAt(0);
+    }
+    
+    function sortAmount(a, b) {
+        return a.amount - b.amount;
     }
     useEffect(() => {
         console.log(fixedData);

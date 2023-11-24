@@ -11,6 +11,7 @@ function NavBar() {
         if (e.target.innerText == 'Sair') {
             e.target.href = '/'
             window.localStorage.removeItem('user');
+            window.localStorage.removeItem('reports');
             window.location.reload();
         }
     }

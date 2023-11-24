@@ -43,6 +43,9 @@ span {
 .welcome {
   align-items: center;
 }
+#date-column, #cost-column, #brand-column, #amount-column {
+  cursor: pointer;
+}
 .bg-1 {
   background-color: #00f391;
   position: absolute;
@@ -57,6 +60,10 @@ span {
 .dashboard-container {
   border: 1px solid #00f391;
   border-radius: 10px;
+}
+.dashboard-container:hover {
+  transition: 0.5s;
+  background-color: #bdffb6;
 }
 .dashboard-summary {
   height: 480px;

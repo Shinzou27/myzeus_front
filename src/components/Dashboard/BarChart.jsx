@@ -1,6 +1,7 @@
 import { Chart, registerables } from "chart.js";
 import React from "react";
 import { useState, useEffect } from "react";
+import { getCostRange } from "./analytics";
 
 class BarChart extends React.Component {
     constructor(props) {
@@ -9,15 +10,15 @@ class BarChart extends React.Component {
         Chart.register(...registerables);
     }
     componentDidMount() {
-        let reports = JSON.parse(window.localStorage.getItem('reports'));
+        let reports = getCostRange(JSON.parse(window.localStorage.getItem('reports')));
         console.log(reports);
         this.myChart = new Chart(this.chartRef.current, {
             type: 'bar',
             data: {
-              labels: reports.map(d => d.brand),
+              labels: reports.map(d => d.label),
               datasets: [{
                 label: this.props.title,
-                data: reports.map(d => d.amount),
+                data: reports.map(d => d.value),
                 backgroundColor: this.props.color
               }]
             }

@@ -60,6 +60,12 @@ span {
 }
 .dashboard-summary {
   height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboard-summary h6 {
+  font-size: 14px;
 }
 .dashboard-redirect {
   height: 60px;
@@ -71,6 +77,12 @@ span {
 .dashboard-chart {
   height: 400px;
   margin-bottom: 10px;
+}
+.dashboard-chart-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 canvas {
   max-height: 300px;

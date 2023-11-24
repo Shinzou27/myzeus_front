@@ -9,7 +9,7 @@ function Login() {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        api.get(`/users?username=${username}`).then((response) => {
+        api.get(`/users?username=${username}&password=${password}`).then((response) => {
             window.localStorage.setItem('user', JSON.stringify(response.data));
             nav('/');
             window.location.reload();

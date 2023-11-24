@@ -1,17 +1,17 @@
 import { Chart, registerables } from "chart.js";
 import React from "react";
-import { getBrandPreference } from "./analytics";
+import { getDataRange } from "./analytics";
 
-class PieChart extends React.Component {
+class LineChart extends React.Component {
     constructor(props) {
         super(props);
         this.chartRef = React.createRef();
         Chart.register(...registerables);
     }
     componentDidMount() {
-        let reports = getBrandPreference(JSON.parse(window.localStorage.getItem('reports')));
+        let reports = getDataRange(JSON.parse(window.localStorage.getItem('reports')));
         this.myChart = new Chart(this.chartRef.current, {
-            type: 'pie',
+            type: 'line',
             data: {
               labels: reports.map(d => d.label),
               datasets: [{
@@ -26,4 +26,4 @@ class PieChart extends React.Component {
     }
 }
  
-export default PieChart;
+export default LineChart;

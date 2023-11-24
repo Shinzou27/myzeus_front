@@ -1,15 +1,16 @@
 import { Container, Dropdown } from "react-bootstrap";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
+import LineChart from "./LineChart";
 import { useState } from "react";
 
 function GeneralCharts({ user }) {
     const [chart, setChart] = useState();
     function handleFilter(type) {
         if(type == 'date') {
-            setChart(<p>Gráfico indisponível</p>)
+            setChart(<LineChart title='Compras por mês' color='#aaa0ff'/>)
         } else if (type == 'cost') {
-            setChart(<BarChart title='Custos' color='#ffdd0a' data={user} />)
+            setChart(<BarChart title='Intervalos de preço' color='#ffdd0a' data={user} />)
         } else {
             setChart(<PieChart title='Preferência de marcas' color='#fab0af' data={user} />)
         }
@@ -26,8 +27,8 @@ function GeneralCharts({ user }) {
                     </Dropdown.Menu>
                 </Dropdown>
             </Container>
-            <Container>
-                {chart}
+            <Container className="dashboard-chart-view">
+                {chart ? chart: <p>Escolha um filtro para iniciar!</p>}
             </Container>
         </Container>
     );

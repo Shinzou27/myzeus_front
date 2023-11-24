@@ -10,7 +10,7 @@ function GeneralCharts({ user }) {
         if(type == 'date') {
             setChart(<LineChart title='Compras por mês' color='#aaa0ff'/>)
         } else if (type == 'cost') {
-            setChart(<BarChart title='Intervalos de preço' color='#ffdd0a' data={user} />)
+            setChart(<BarChart title='Intervalos de preço' color='#ffff09' data={user} />)
         } else {
             setChart(<PieChart title='Preferência de marcas' color='#fab0af' data={user} />)
         }

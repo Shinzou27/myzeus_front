@@ -2,16 +2,20 @@ export function getBrandPreference(reports) {
     let grouped = [];
     reports.forEach((r) => {
         if (grouped.map(item => item.label).includes(r.brand)) {
-            console.log(grouped.map(item => item.label).indexOf(r.brand));
-            console.log(grouped.map(item => item.label));
-            grouped[grouped.map(item => item.label).indexOf(r.brand)].value++;
+            const selected = grouped[grouped.map(item => item.label).indexOf(r.brand)];
+            selected.value++;
+            selected.totalCost += parseFloat(r.cost.replace(',', '.'));
+            selected.totalAmount += r.amount;
         } else {
             grouped.push({
                 label: r.brand,
-                value: 1
+                value: 1,
+                totalCost: parseFloat(r.cost.replace(',', '.')),
+                totalAmount: r.amount
             });
         }
     });
+    console.log(grouped);
     return grouped;
 }
 
@@ -23,13 +27,13 @@ export function getCostRange(reports) {
     const step = Math.ceil(sentinels.max) / 5;
     let grouped = [{
         limit: sentinels.min + step * 1,
-        label: `0 a ${sentinels.min + step * 1}`,
+        label: `R$00,00 a R$${sentinels.min + step * 1},00`,
         value: 0
     }];
     for (let i = 1; i < 5; i++) {
         grouped[i] = {
             limit: sentinels.min + step * (i + 1),
-            label: `${grouped[i - 1].limit} a ${sentinels.min + step * (i + 1)}`,
+            label: `R$${grouped[i - 1].limit},00 a R$${sentinels.min + step * (i + 1)},00`,
             value: 0
         }
     }
@@ -59,8 +63,6 @@ export function getDataRange(reports) {
     const minYear = new Date(sentinels.min.date).getUTCFullYear();
     const maxMonth = new Date(sentinels.max.date).getUTCMonth();
     const maxYear = new Date(sentinels.max.date).getUTCFullYear();
-    //`${months[minMonth]}/${minYear.toString().slice(2)}`
-    console.log(`menor valor: mes = ${minMonth}, ano = ${minYear}\nmaior valor: mes = ${maxMonth}, ano = ${maxYear}`);
     let grouped = [];
     let k = minYear;
     for (let i = minMonth; i <= 11; i++) {
@@ -104,15 +106,15 @@ export function getMeanPrice(reports) {
 }
 
 export function getBestBuy(reports) {
+    const summarizedByBranch = getBrandPreference(reports);
     let result = 0;
     let bestBuy;
-    reports.forEach((r) => {
-        const amountPerCost = r.amount / parseFloat(r.cost.replace(',', '.'));
-        console.log(result > amountPerCost);
+    summarizedByBranch.forEach((b) => {
+        const amountPerCost = b.totalAmount / b.totalCost;
+        console.log(b.totalAmount, b.totalCost, amountPerCost);
         if (result < amountPerCost) {
             result = amountPerCost;
-            bestBuy = r.brand;
-            console.log(r);
+            bestBuy = b.label;
         }
     });
     return [result.toFixed(2), bestBuy];

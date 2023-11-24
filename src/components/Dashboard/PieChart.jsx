@@ -15,6 +15,7 @@ class PieChart extends React.Component {
             data: {
               labels: reports.map(d => d.label),
               datasets: [{
+                title: this.props.title,
                 data: reports.map(d => d.value),
                 backgroundColor: this.props.colors
               }]

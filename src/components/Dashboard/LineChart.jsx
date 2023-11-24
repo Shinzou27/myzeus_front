@@ -13,17 +13,18 @@ class LineChart extends React.Component {
         this.myChart = new Chart(this.chartRef.current, {
             type: 'line',
             data: {
-              labels: reports.map(d => d.label),
-              datasets: [{
-                data: reports.map(d => d.value),
-                backgroundColor: this.props.colors
-              }]
+                labels: reports.map(d => d.label),
+                datasets: [{
+                    label: this.props.title,
+                    data: reports.map(d => d.value),
+                    backgroundColor: this.props.colors
+                }]
             }
-          });
+        });
     }
-    render() { 
-        return (<canvas ref={this.chartRef}/>);
+    render() {
+        return (<canvas ref={this.chartRef} />);
     }
 }
- 
+
 export default LineChart;

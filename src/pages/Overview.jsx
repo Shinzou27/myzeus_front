@@ -54,6 +54,7 @@ function Overview() {
             setFixedData(response.data.sort(sortDate));
             setData(response.data.sort(sortDate));
             console.log(fixedData);
+            window.localStorage.setItem('reports', JSON.stringify(response.data))
         });
     }, []);
     function showModal(report, type) {

@@ -8,7 +8,6 @@ function Dashboard() {
     const user = JSON.parse(window.localStorage.getItem('user'));
     useEffect(() => {
         api.get(`/reports?id=${user.id}`).then((response) => {
-            window.localStorage.removeItem('reports');
             window.localStorage.setItem('reports', JSON.stringify(response.data))
         });
     })

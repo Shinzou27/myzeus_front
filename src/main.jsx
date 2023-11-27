@@ -8,6 +8,7 @@ import Overview from './pages/Overview.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import NewReport from './pages/NewReport.jsx'
 import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/overview' element={<Overview/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -2,6 +2,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import UserForm from "../components/User/UserForm";
 
 function Login() {
     const nav = useNavigate();
@@ -16,21 +17,11 @@ function Login() {
         }).catch((e) => console.log(e.message));
     }
     return (
-        <Form className="mt-5 w-50 m-auto">
-            <Form.Group as={Row}>
-                <Form.Label column>Nome de usuário:</Form.Label>
-                <Col>
-                    <Form.Control required id="username" size="sm" type="text"></Form.Control>
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                <Form.Label column>Senha:</Form.Label>
-                <Col>
-                    <Form.Control required id="password" size="sm" type="password"></Form.Control>
-                </Col>
-            </Form.Group>
-            <Button onClick={handleLogin} type="submit" variant="success">Entrar</Button>
-        </Form>
+        <Container className="mt-5">
+            <h1>Entrar</h1>
+            <UserForm handler={handleLogin} btnText={'Entrar'}/>
+            <p>Não possui uma conta? <a className="text-decoration-none" href="/register">Criar</a></p>
+        </Container>
     );
 }
 

@@ -3,7 +3,6 @@ import Nav from 'react-bootstrap/Nav';
 import logo from '../../assets/logo.png'
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image'
-import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
     const user = JSON.parse(window.localStorage.getItem('user'));
@@ -28,7 +27,10 @@ function NavBar() {
                     }
 
                 </Nav>
-                <Nav.Link onClick={pseudoMiddleware} href='/login' className='text-light ms-auto' > {!user ? 'Entrar' : 'Sair'}</Nav.Link>
+                <Nav>
+                    <Nav.Link onClick={pseudoMiddleware} href='/login' className='text-light ms-auto' > {!user ? 'Entrar' : 'Sair'}</Nav.Link>
+                    {!user && <Nav.Link href='/register' className='text-light ms-auto'>Criar Conta</Nav.Link>}
+                </Nav>
             </Container>
         </Navbar>
     )

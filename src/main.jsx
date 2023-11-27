@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import NewReport from './pages/NewReport.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
+import Profile from './pages/Profile.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

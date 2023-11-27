@@ -43,8 +43,8 @@ function ReportModal({ report, show, handleClose, type }) {
                 Tem certeza que deseja apagar este relatório?
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={handleClose} variant='error'>Cancelar</Button>
-                <Button onClick={handleDelete} variant='success'>Salvar</Button>
+                <Button onClick={handleClose} variant='secondary'>Cancelar</Button>
+                <Button onClick={handleDelete} variant='danger'>Apagar</Button>
             </Modal.Footer>
         </>
         : type == 'edit' ? modal =

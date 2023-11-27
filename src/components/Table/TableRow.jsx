@@ -13,6 +13,7 @@ function TableRow({report, handleModal, setModalType}) {
 
     function showModal(e) {
         setModalType(e.target.id);
+        console.log(e.target.id);
         setTimeout(() => {
             handleModal(report, e.target.id);
         }, 100)

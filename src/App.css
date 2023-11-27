@@ -66,7 +66,7 @@ span {
   background-color: #bdffb6;
 }
 .dashboard-summary {
-  height: 480px;
+  height: 72vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -75,14 +75,14 @@ span {
   font-size: 14px;
 }
 .dashboard-redirect {
-  height: 60px;
+  height: 9vh;
   justify-content: space-around;
   align-items: center;
-  line-height: 60px;
+  line-height: 9vh;
   margin-top: 10px;
 }
 .dashboard-chart {
-  height: 400px;
+  height: 60vh;
   margin-bottom: 10px;
 }
 .dashboard-chart-view {

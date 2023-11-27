@@ -2,7 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import UserSummary from "../components/Dashboard/UserSummary";
 import OverviewRedirect from "../components/Dashboard/OverviewRedirect";
 import GeneralCharts from "../components/Dashboard/GeneralCharts";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {api} from '../services/api'
 function Dashboard() {
     const user = JSON.parse(window.localStorage.getItem('user'));

@@ -71,7 +71,7 @@ function ReportModal({ report, show, handleClose, type }) {
                 </Row>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={handleClose} variant='error'>Cancelar</Button>
+                <Button onClick={handleClose} variant='danger'>Cancelar</Button>
                 <Button onClick={handleEdit} variant='success'>Salvar</Button>
             </Modal.Footer>
         </>
@@ -99,7 +99,7 @@ function ReportModal({ report, show, handleClose, type }) {
                 </Row>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={handleClose} variant='error'>Fechar</Button>
+                <Button onClick={handleClose} variant='danger'>Fechar</Button>
             </Modal.Footer>
         </>
 

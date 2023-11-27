@@ -8,27 +8,34 @@ import { Link } from 'react-router-dom'
 function Welcome({ user }) {
 
     return (
-        <Container className='w-50'>
-            <Container className='mb-3 mt-5 pt-5'>
-                {user ? <>
-                    <h1>Olá, <span id='highlight'>{user.username}</span>!</h1>
-                    <p className='my-5'>Comece a gerenciar seus gastos agora!</p>
-                </> : <>
-                    <h1>Bem-vindo!</h1>
-                    <p>Entre ou crie sua conta agora mesmo!</p>
-                </>}
-            </Container>
-            {user && <Container>
-                <Row>
-                    <Col>
-                        <Button variant='success'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/new'}>Adicionar novo relatório</Link></Button>
-                    </Col>
-                    <Col>
-                        <Button variant='success'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/overview'}>Ver lista de relatórios</Link></Button>
-                    </Col>
-                </Row>
-            </Container>}
-        </Container>
+        <div className='w-50 welcome-outer-div'>
+            <div className='welcome'>
+                {user ?
+                    <>
+                        <h1>Olá, <span id='highlight'>{user.username}</span>!</h1>
+                        <p className='my-5'>Comece a gerenciar seus gastos agora!</p>
+                        <div>
+                            <Row>
+                                <Col>
+                                    <Button variant='success'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/new'}>Adicionar novo relatório</Link></Button>
+                                </Col>
+                                <Col>
+                                    <Button variant='success'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/overview'}>Ver lista de relatórios</Link></Button>
+                                </Col>
+                            </Row>
+                        </div>
+                    </> :
+                    <>
+                        <h1>Bem-vindo!</h1>
+                        <p>Entre ou crie sua conta agora mesmo!</p>
+                        <Container>
+                            <Button className='mx-2 welcome-button' href='/login' variant='success'>Entrar</Button>
+                            <Button className='mx-2 welcome-button' href='/register' variant='success'>Criar conta</Button>
+                        </Container>
+                    </>
+                }
+            </div>
+        </div>
     );
 }
 

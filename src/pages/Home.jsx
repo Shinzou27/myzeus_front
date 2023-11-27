@@ -8,12 +8,12 @@ function Home() {
   return (
     <Container>
       <Background color={'1'}/>
-      <Container className='full-screen'>
+      <div className='full-screen'>
         <Welcome user={user} />
-      </Container>
-      <Container className='full-screen'>
+      </div>
+      <div className='full-screen'>
         <Feedback />
-      </Container>
+      </div>
     </Container>
   )
 }

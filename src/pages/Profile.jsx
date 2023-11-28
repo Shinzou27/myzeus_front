@@ -48,7 +48,7 @@ function Profile() {
                     </Container>
                     <Container className="profile-options">
                         <a onClick={handleShow}>Alterar senha</a>
-                        <a onClick={handleLogout}>Sair</a>
+                        <a className="text-danger text-decoration-none" onClick={handleLogout}>Sair</a>
                     </Container>
                 </Container>
             </Container>

@@ -19,10 +19,10 @@ function NavBar() {
             <Container>
                 <Navbar.Brand href='/'><Image src={logo} height={16}></Image></Navbar.Brand>
                 <Nav className='me-auto fs-5'>
-                    <Nav.Link href='/' className='text-light'>Início</Nav.Link>
+                    <Nav.Link href='/' className='text-light nav-text'>Início</Nav.Link>
                     {user && <>
-                        <Nav.Link href='/overview' className='text-light'>Visão Geral</Nav.Link>
-                        <Nav.Link href='/dashboard' className='text-light'>Painel de Controle</Nav.Link>
+                        <Nav.Link href='/overview' className='text-light nav-text'>Visão Geral</Nav.Link>
+                        <Nav.Link href='/dashboard' className='text-light nav-text'>Painel de Controle</Nav.Link>
                     </>
                     }
 
@@ -30,12 +30,12 @@ function NavBar() {
                 <Nav>
                     {user ?
                         <>
-                            <Nav.Link onClick={pseudoMiddleware} className='text-light ms-auto' >Sair</Nav.Link>
-                            <Nav.Link href='/profile' className='text-light ms-auto fw-bold'>{user.username}</Nav.Link>
+                            <Nav.Link href='/profile' className='text-light nav-text ms-auto fw-bold'>{user.username}</Nav.Link>
+                            <Nav.Link onClick={pseudoMiddleware} className='text-light nav-text ms-auto' >Sair</Nav.Link>
                         </> :
                         <>
-                            <Nav.Link href='/login' className='text-light ms-auto' >Entrar</Nav.Link>
-                            <Nav.Link href='/register' className='text-light ms-auto'>Criar Conta</Nav.Link>
+                            <Nav.Link href='/login' className='text-light nav-text ms-auto' >Entrar</Nav.Link>
+                            <Nav.Link href='/register' className='text-light nav-text ms-auto'>Criar Conta</Nav.Link>
                         </>}
                 </Nav>
             </Container>

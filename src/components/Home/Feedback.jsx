@@ -31,7 +31,7 @@ function Feedback() {
                 </Container>
             </Container>
             <Container className="app-container w-75">
-                <h2>Baixe também nosso app!</h2>
+                <h2>Baixe também nosso <span>app</span>!</h2>
                 <Container className="d-flex w-75">
                     <Image className="app-img" src={app_icon} width={144} />
                     <p className="align-self-center">Atualize seu registro de compras sem precisar de computador! É rápido, fácil e feito pensando em você! Baixe o "Meu Zeus!" na App Store ou Play Store!</p>

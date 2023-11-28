@@ -17,7 +17,8 @@ class LineChart extends React.Component {
                 datasets: [{
                     label: this.props.title,
                     data: reports.map(d => d.value),
-                    backgroundColor: this.props.colors
+                    backgroundColor: this.props.color,
+                    borderColor: this.props.color
                 }]
             }
         });

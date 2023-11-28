@@ -19,7 +19,8 @@ class BarChart extends React.Component {
               datasets: [{
                 label: this.props.title,
                 data: reports.map(d => d.value),
-                backgroundColor: this.props.color
+                backgroundColor: this.props.color,
+                maxBarThickness: 60
               }]
             }
           });

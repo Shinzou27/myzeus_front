@@ -8,7 +8,7 @@ function OverviewRedirect() {
     return ( 
         <Container className="dashboard-container dashboard-redirect d-flex">
             <p>Prefere os dados na íntegra?</p>
-            <Button variant="success" onClick={handleNavigate} >Ver lista de relatórios</Button>
+            <Button className="proj-30" onClick={handleNavigate} >Ver lista de relatórios</Button>
         </Container>
      );
 }

@@ -2,6 +2,7 @@ import { Container, Button } from "react-bootstrap";
 import UserForm from "../components/User/UserForm";
 import { api } from "../services/api";
 function Register() {
+    document.title = 'Meu Zeus | Criar conta';
     function handleRegister(e) {
         e.preventDefault();
         const username = document.getElementById('username').value;

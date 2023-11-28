@@ -15,17 +15,17 @@ function Feedback() {
                 <Container className="d-flex">
                     <Card className="mx-2 pet-card">
                         <Card.Title className="pet-name">Zeus (Bulldog)</Card.Title>
-                        <Card.Body className="feedback-desc">A plataforma é definitivamente uma das plataformas existentes. Depois de usá-la para gerenciar as rações que comprava, continuei sendo o mesmo!</Card.Body>
+                        <Card.Body className="feedback-desc">"A plataforma é definitivamente uma das plataformas existentes. Depois de usá-la para gerenciar as rações que comprava, continuei sendo o mesmo!"</Card.Body>
                         <Card.Footer className="pet-owner">Fulano I, São Paulo - SP</Card.Footer>
                     </Card>
                     <Card className="mx-2 pet-card">
                         <Card.Title className="pet-name">Zeus (Gato)</Card.Title>
-                        <Card.Body className="feedback-desc">O Meu Zeus me ajudou muito! Agora, continuo comprando as mesmas rações, porém sei quanto sai do meu bolso todo mês.</Card.Body>
+                        <Card.Body className="feedback-desc">"O Meu Zeus me ajudou muito! Agora, continuo comprando as mesmas rações, porém sei quanto sai do meu bolso todo mês."</Card.Body>
                         <Card.Footer className="pet-owner">Fulano II, Niterói - RJ</Card.Footer>
                     </Card>
                     <Card className="mx-2 pet-card">
                         <Card.Title className="pet-name">Zeus (Pastor Alemão)</Card.Title>
-                        <Card.Body className="feedback-desc">Acabou a criatividade. Não tenho mais o que escrever. Só tô aqui porque preciso ser um placeholder um pouco maior!</Card.Body>
+                        <Card.Body className="feedback-desc">"Acabou a criatividade. Não tenho mais o que escrever. Só tô aqui porque preciso ser um placeholder um pouco maior!"</Card.Body>
                         <Card.Footer className="pet-owner">Fulano III, Caucaia - CE</Card.Footer>
                     </Card>
                 </Container>

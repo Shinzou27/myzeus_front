@@ -5,6 +5,7 @@ import Background from '../components/Fixed/Background'
 
 function Home() {
   const user = JSON.parse(window.localStorage.getItem('user'));
+  document.title = 'Meu Zeus | Início';
   return (
     <Container>
       <Background color={'1'}/>

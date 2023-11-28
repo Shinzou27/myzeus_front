@@ -6,11 +6,12 @@ import { useEffect } from "react";
 import {api} from '../services/api'
 function Dashboard() {
     const user = JSON.parse(window.localStorage.getItem('user'));
+    document.title = 'Meu Zeus | Painel de Controle'
     useEffect(() => {
         api.get(`/reports?id=${user.id}`).then((response) => {
             window.localStorage.setItem('reports', JSON.stringify(response.data))
         });
-    })
+    }, []);
     return (
         <Container className="pt-5">
             <h1>Painel de Controle</h1>

@@ -17,10 +17,10 @@ function Welcome({ user }) {
                         <div>
                             <Row>
                                 <Col>
-                                    <Button className='proj-10'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/new'}>Adicionar novo relatório</Link></Button>
+                                    <Button className='proj-30'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/new'}>Adicionar novo relatório</Link></Button>
                                 </Col>
                                 <Col>
-                                    <Button className='proj-10'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/overview'}>Ver lista de relatórios</Link></Button>
+                                    <Button className='proj-30'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/overview'}>Ver lista de relatórios</Link></Button>
                                 </Col>
                             </Row>
                         </div>

@@ -11,6 +11,7 @@ function NavBar() {
     function pseudoMiddleware(e) {
         window.localStorage.removeItem('user');
         window.localStorage.removeItem('reports');
+        window.localStorage.removeItem('pets');
         nav('/');
         window.location.reload();
     }

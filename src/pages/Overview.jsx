@@ -62,6 +62,10 @@ function Overview() {
         setModalType(type);
         handleShow();
     }
+    function filterBrand(brand) {
+        let aux = fixedData.filter((report) => report.brand == brand);
+        setData(aux);
+    }
     return (
         <Container className="mt-5">
             {highlight && <ReportModal type={modalType} report={highlight} setData={setData} handleClose={handleClose} show={show} />}
@@ -69,7 +73,8 @@ function Overview() {
                 <h1>Visão Geral</h1>
             </Container>
             <Container>
-                <TableFilter handleClick={dateInterval} />
+                <TableFilter handleClick={dateInterval} handleBrand={filterBrand}/>
+                <Button className="proj-10 mb-2">Exportar para PDF</Button>
                 <FoodTable data={data} handleModal={showModal} setModalType={setModalType} />
             </Container>
         </Container>

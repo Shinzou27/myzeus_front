@@ -20,6 +20,7 @@ export function getBrandPreference(reports) {
 }
 
 export function getCostRange(reports) {
+    const intervalNumber = 6
     const maxValue = Math.ceil(reports.map(r => parseFloat(r.cost.replace(',', '.'))).sort((a, b) => {
         return a - b;
     })[reports.length-1]);
@@ -27,16 +28,17 @@ export function getCostRange(reports) {
         min: 0,
         max: maxValue
     }
-    const step = Math.ceil(sentinels.max) / 5;
+    const step = Math.ceil(sentinels.max) / intervalNumber;
+    
     let grouped = [{
         limit: sentinels.min + step * 1,
-        label: `R$00,00 a R$${sentinels.min + step * 1},00`,
+        label: `R$00,00 a R$${(sentinels.min + step * 1).toFixed(2).replace('.', ',')}`,
         value: 0
     }];
-    for (let i = 1; i < 5; i++) {
+    for (let i = 1; i < intervalNumber; i++) {
         grouped[i] = {
             limit: sentinels.min + step * (i + 1),
-            label: `R$${grouped[i - 1].limit},00 a R$${sentinels.min + step * (i + 1)},00`,
+            label: `R$${(grouped[i - 1].limit).toFixed(2).replace('.', ',')} a R$${(sentinels.min + step * (i + 1)).toFixed(2).replace('.', ',')}`,
             value: 0
         }
     }

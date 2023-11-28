@@ -4,6 +4,7 @@ function TableHead() {
         <thead>
             <tr>
                 <th>Dia</th>
+                <th>Pet</th>
                 <th>Custo</th>
                 <th>Marca</th>
                 <th>Quantidade</th>

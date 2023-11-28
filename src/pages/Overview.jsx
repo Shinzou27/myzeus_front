@@ -9,10 +9,13 @@ import { useEffect, useState } from "react"
 
 function Overview() {
     const user = JSON.parse(window.localStorage.getItem('user'));
+    const pets = JSON.parse(window.localStorage.getItem('pets'));
+    document.title = 'Meu Zeus | Visão Geral';
     const [limits, setLimits] = useState({ start: new Date('2000-01-01'), end: new Date('2099-12-31') });
     const [data, setData] = useState([]);
     const [fixedData, setFixedData] = useState([]);
     const [highlight, setHighlight] = useState();
+    const [highlightPet, setHighlightPet] = useState();
     const [modalType, setModalType] = useState('');
     const [show, setShow] = useState(false);
     const [sorter, setSorter] = useState('date');
@@ -59,6 +62,7 @@ function Overview() {
     }, []);
     function showModal(report, type) {
         setHighlight(report);
+        setHighlightPet(pets.filter((pet) => pet.id === report.petId)[0]);
         setModalType(type);
         handleShow();
     }
@@ -66,14 +70,18 @@ function Overview() {
         let aux = fixedData.filter((report) => report.brand == brand);
         setData(aux);
     }
+    function filterPet(pet) {
+        let aux = fixedData.filter((report) => report.petId == pet);
+        setData(aux);
+    }
     return (
         <Container className="mt-5">
-            {highlight && <ReportModal type={modalType} report={highlight} setData={setData} handleClose={handleClose} show={show} />}
+            {highlight && <ReportModal type={modalType} report={highlight} pet={highlightPet} setData={setData} handleClose={handleClose} show={show} />}
             <Container>
                 <h1>Visão Geral</h1>
             </Container>
             <Container>
-                <TableFilter handleClick={dateInterval} handleBrand={filterBrand}/>
+                <TableFilter handleClick={dateInterval} handlePet={filterPet}/>
                 <Button className="proj-10 mb-2">Exportar para PDF</Button>
                 <FoodTable data={data} handleModal={showModal} setModalType={setModalType} />
             </Container>

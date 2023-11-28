@@ -1,7 +1,8 @@
-import {PencilSquare} from 'react-bootstrap-icons'
-import {Trash} from 'react-bootstrap-icons'
+import { PencilSquare } from 'react-bootstrap-icons'
+import { Trash } from 'react-bootstrap-icons'
 
-function TableRow({report, handleModal, setModalType}) {
+function TableRow({ report, handleModal, setModalType }) {
+    const pets = JSON.parse(window.localStorage.getItem('pets'));
     function parseDate(date) {
         const toFormat = new Date(date);
         let day;
@@ -11,24 +12,21 @@ function TableRow({report, handleModal, setModalType}) {
         return day + "/" + month + "/" + toFormat.getFullYear();
     }
 
-    function showModal(e) {
-        setModalType(e.target.id);
-        console.log(e.target.id);
-        setTimeout(() => {
-            handleModal(report, e.target.id);
-        }, 100)
+    function showModal(type) {
+        handleModal(report, type);
     }
-    return ( 
+    return (
         <>
-        <tr>
-            <td id='date-column' className='col-3'onClick={showModal}>{parseDate(report.date)}</td>
-            <td id='cost-column' className='col-3'onClick={showModal}>{`R$${report.cost}`}</td>
-            <td id='brand-column' className='col-2' onClick={showModal}>{report.brand}</td>
-            <td id='amount-column' className='col-2' onClick={showModal}>{report.amount}</td>
-            <td className='col-2'><PencilSquare id='edit' onClick={showModal} className='mx-1 c-pointer'/><Trash id='delete' onClick={showModal} className='mx-1 c-pointer'/></td>
-        </tr>
+            <tr>
+                <td id='date-column' className='col-3' onClick={() => showModal('date')}>{parseDate(report.date)}</td>
+                <td id='pet-column' className='col-2' onClick={() => showModal('pet')}>{pets.filter((pet) => pet.id == report.petId)[0].name}</td>
+                <td id='cost-column' className='col-2' onClick={() => showModal('cost')}>{`R$${report.cost}`}</td>
+                <td id='brand-column' className='col-2' onClick={() => showModal('brand')}>{report.brand}</td>
+                <td id='amount-column' className='col-2' onClick={() => showModal('amount')}>{report.amount}</td>
+                <td className='col-1'><PencilSquare id='edit' onClick={() => showModal('edit')} className='mx-1 c-pointer' /><Trash id='delete' onClick={() => showModal('delete')} className='mx-1 c-pointer' /></td>
+            </tr>
         </>
-     );
+    );
 }
 
 export default TableRow;

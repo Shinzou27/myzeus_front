@@ -2,7 +2,8 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/esm/Container';
-function TableFilter({handleClick, handleBrand}) {
+function TableFilter({handleClick, handlePet}) {
+    const pets = JSON.parse(window.localStorage.getItem('pets'));
     function sendDates() {
         const start = document.getElementById('start').value;
         const end = document.getElementById('end').value;
@@ -21,11 +22,10 @@ function TableFilter({handleClick, handleBrand}) {
                 </Col>
             </Row>
             <Row className='my-2'>
-                <h6>Filtrar por marca</h6>
-                <Col onClick={() => handleBrand('A')}>A</Col>
-                <Col onClick={() => handleBrand('B')}>B</Col>
-                <Col onClick={() => handleBrand('C')}>C</Col>
-                <Col onClick={() => handleBrand('D')}>D</Col>
+                <h6>Filtrar por pet</h6>
+                {pets.map((pet) => (
+                    <Col onClick={() => handlePet(pet.id)}>{pet.name}</Col>
+                ))}
             </Row>
             <Button onClick={sendDates} className='my-2 proj-30'>Filtrar</Button>
         </Container>

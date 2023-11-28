@@ -3,17 +3,20 @@ import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/esm/Button';
 import { api } from '../../services/api';
 
-function ReportModal({ report, show, handleClose, type }) {
+function ReportModal({ report, pet, show, handleClose, type }) {
+    const pets = JSON.parse(window.localStorage.getItem('pets'));
     function handleEdit() {
         const newDate = new Date(document.getElementById('newDate').value).toISOString();
         const newCost = document.getElementById('newCost').value;
         const newBrand = document.getElementById('newBrand').value;
         const newAmount = parseInt(document.getElementById('newAmount').value);
+        const newPetId = parseInt(document.getElementById('newPet').options[document.getElementById('newPet').options.selectedIndex].value);
         api.put(`/reports/${report.id}`, {
             date: newDate,
             cost: newCost,
             brand: newBrand,
-            amount: newAmount
+            amount: newAmount,
+            petId: newPetId
         }).then((response) => {
             console.log(response.data);
             window.location.reload();
@@ -56,6 +59,12 @@ function ReportModal({ report, show, handleClose, type }) {
                 <Row>
                     <label className='fw-bold'>Data</label>
                     <input type="date" id='newDate' defaultValue={new Date(report.date).toISOString().slice(0, 10)} />
+                </Row>
+                <Row>
+                    <label className='fw-bold'>Pet</label>
+                    <select id='newPet' defaultValue={pet.name}>
+                    {pets.map((pet) => <option key={pet.id} value={pet.id}>{pet.name}</option>)}
+                    </select>
                 </Row>
                 <Row>
                     <label className='fw-bold'>Custo</label>

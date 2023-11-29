@@ -1,0 +1,77 @@
+.welcome-outer-div {
+  margin-right: auto;
+  left: 0;
+  height: 100vh;
+}
+
+.welcome {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.welcome h1,
+.welcome p {
+  background-color: #f0ffeb;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 5px auto;
+  padding: 1vw 1vh;
+}
+
+.welcome h1 {
+  font-size: 3.5em;
+  font-weight: bold;
+}
+
+.welcome-button {
+  width: 140px;
+}
+
+
+.feedback-left {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 15px;
+  border: 1px solid #00a764;
+}
+.pet-card {
+  border: 1px solid #00a764;
+  width: 16vw;
+  height: 30vh;
+}
+
+.pet-name {
+  padding: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.pet-owner {
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 15px;
+}
+.feedback-desc {
+  font-size: 12px;
+}
+.app-container {
+  padding: 2vh 2vw;
+  border-radius: 20px;
+}
+.app-container div {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.app-container p {
+  width: 400px;
+}
+.app-img {
+  border-radius: 20px;
+  border: 3px solid white;
+}

@@ -5,6 +5,7 @@ import PasswordModal from "../components/User/PasswordModal";
 import PetCarousel from "../components/Pet/PetCarousel";
 import { useState } from "react";
 import { api } from "../services/api";
+import '../styles/Profile.css'
 
 function Profile() {
     const user = JSON.parse(window.localStorage.getItem('user'));

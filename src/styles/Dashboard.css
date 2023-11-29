@@ -1,0 +1,39 @@
+.dashboard-container {
+    border: 1px solid #00f391;
+    border-radius: 10px;
+  }
+  .dashboard-summary {
+    height: 72vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .dashboard-summary h6 {
+    font-size: 14px;
+  }
+  
+  .dashboard-redirect {
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .dashboard-chart {
+    height: 60vh;
+    margin-bottom: 10px;
+  }
+  
+  .dashboard-chart-view {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  
+  canvas {
+    max-height: 300px;
+  }

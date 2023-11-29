@@ -1,0 +1,42 @@
+.profile {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .profile-options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2vw;
+    color: #00a764;
+  }
+  .profile-options a {
+    cursor: pointer;
+  }
+  .profile-pet {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .profile-pet div {
+    height: 15vh;
+    line-height: 15vh;
+  }
+  .pet-carousel {
+    border: 1px solid #00f391;
+  }
+  .new-pet {
+    color: #ebb915;
+  }

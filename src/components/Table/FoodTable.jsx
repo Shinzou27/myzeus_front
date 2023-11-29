@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/esm/Table';
 import TableHead from './TableHead';
 import TableRow from './TableRow';
 import Container from 'react-bootstrap/esm/Container';
+import '../../styles/Table.css';
 
 function FoodTable({data, handleModal, setModalType, sorter}) {
     return (

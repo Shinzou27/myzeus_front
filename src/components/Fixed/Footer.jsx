@@ -1,4 +1,6 @@
 import { Github } from "react-bootstrap-icons";
+import '../../styles/Footer.css';
+
 function Footer() {
     return ( 
         <footer className="fluid bg-dark text-white footer d-flex justify-content-center">

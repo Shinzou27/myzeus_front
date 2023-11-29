@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png'
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image'
 import { useNavigate } from 'react-router-dom';
+import '../../styles/Navbar.css';
 
 function NavBar() {
     const user = JSON.parse(window.localStorage.getItem('user'));

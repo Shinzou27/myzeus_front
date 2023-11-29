@@ -2,6 +2,7 @@ import Container from "react-bootstrap/esm/Container";
 import Button from 'react-bootstrap/Button'
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import '../../styles/ReportForm.css';
 
 function ReportForm() {
     const nav = useNavigate()
@@ -27,29 +28,29 @@ function ReportForm() {
     }
     return (
         <form onSubmit={submit} method="post">
-            <Container className="flex-end">
-                <label className="mx-3 form-label">Data da compra: </label>
-                <input id="date" defaultValue={new Date().toISOString().slice(0, 10)} className="mx-3 form-input" type="date" />
+            <Container className="flex-end my-4">
+                <label className="mx-3 report-label">Data da compra: </label>
+                <input id="date" defaultValue={new Date().toISOString().slice(0, 10)} className="mx-3 report-input" type="date" />
             </Container>
-            <Container className="flex-end">
-                <label className="mx-3 form-label">Custo: </label>
-                <input id="cost" className="mx-3 form-input" type="text" />
+            <Container className="flex-end my-4">
+                <label className="mx-3 report-label">Custo: </label>
+                <input id="cost" className="mx-3 report-input" type="text" />
             </Container>
-            <Container className="flex-end">
-                <label className="mx-3 form-label">Marca: </label>
-                <input id="brand" className="mx-3 form-input" type="text" />
+            <Container className="flex-end my-4">
+                <label className="mx-3 report-label">Marca: </label>
+                <input id="brand" className="mx-3 report-input" type="text" />
             </Container>
-            <Container className="flex-end">
-                <label className="mx-3 form-label">Quantidade/Peso (g): </label>
-                <input id="amount" className="mx-3 form-input" type="number" />
+            <Container className="flex-end my-4">
+                <label className="mx-3 report-label">Quantidade/Peso (g): </label>
+                <input id="amount" className="mx-3 report-input" type="number" />
             </Container>
-            <Container className="flex-end">
-                <label className="mx-3 form-label">Pet: </label>
-                <select className="mx-3 form-input" id="pet">
+            <Container className="flex-end my-4">
+                <label className="mx-3 report-label">Pet: </label>
+                <select className="mx-3 report-input report-select" id="pet">
                     {pets.map((pet) => <option key={pet.id} value={pet.id}>{pet.name}</option>)}
                 </select>
             </Container>
-            <Button onClick={handlePost} type="button" variant="success">Enviar</Button>
+            <Button onClick={handlePost} type="button" className="proj-30">Enviar</Button>
         </form>
     );
 }

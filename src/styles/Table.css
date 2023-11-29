@@ -1,0 +1,10 @@
+#date-column,
+#cost-column,
+#brand-column,
+#amount-column,
+#pet-column {
+  cursor: pointer;
+}
+#edit, #delete, #date-column, #cost-column, #brand-column, #amount-column, th {
+  color: #000!important;
+}

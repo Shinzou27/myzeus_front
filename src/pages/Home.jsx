@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/esm/Container'
 import Welcome from '../components/Home/Welcome'
 import Feedback from '../components/Home/Feedback'
 import Background from '../components/Fixed/Background'
+import '../styles/Home.css'
 
 function Home() {
   const user = JSON.parse(window.localStorage.getItem('user'));

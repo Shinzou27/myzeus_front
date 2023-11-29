@@ -3,7 +3,7 @@ import Footer from './components/Fixed/Footer'
 import { Outlet } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import './Button.css'
+import './styles/Button.css'
 
 function App() {
   return (

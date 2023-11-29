@@ -4,6 +4,8 @@ import OverviewRedirect from "../components/Dashboard/OverviewRedirect";
 import GeneralCharts from "../components/Dashboard/GeneralCharts";
 import { useEffect } from "react";
 import {api} from '../services/api'
+import '../styles/Dashboard.css';
+
 function Dashboard() {
     const user = JSON.parse(window.localStorage.getItem('user'));
     document.title = 'Meu Zeus | Painel de Controle'

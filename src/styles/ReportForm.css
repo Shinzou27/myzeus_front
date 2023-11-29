@@ -1,0 +1,14 @@
+.report-label {
+    width: 300px;
+}
+
+.report-input {
+    width: 15vw;
+    border-radius: 0.375vw;
+}
+
+.report-select {
+    width: 15vw;
+    border-radius: 0.375vw;
+    background-color: #fff;
+}

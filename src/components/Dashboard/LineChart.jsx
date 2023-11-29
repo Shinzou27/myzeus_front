@@ -1,6 +1,6 @@
 import { Chart, registerables } from "chart.js";
 import React from "react";
-import { getDataRange } from "./analytics";
+import { getSeparatedDataRange } from "./analytics";
 
 class LineChart extends React.Component {
     constructor(props) {
@@ -9,17 +9,19 @@ class LineChart extends React.Component {
         Chart.register(...registerables);
     }
     componentDidMount() {
-        let reports = getDataRange(JSON.parse(window.localStorage.getItem('reports')));
+        let pets = JSON.parse(window.localStorage.getItem('pets'));
+        let reports = getSeparatedDataRange(JSON.parse(window.localStorage.getItem('reports')));
+        reports.data.forEach(petData => {
+            console.log(pets.forEach((pet) => pet.id == petData.label));
+            petData.label = pets.filter((pet) => pet.id == petData.label)[0].name;
+        });
+        console.log(reports);
+        const test = reports.data[0];
         this.myChart = new Chart(this.chartRef.current, {
             type: 'line',
             data: {
-                labels: reports.map(d => d.label),
-                datasets: [{
-                    label: this.props.title,
-                    data: reports.map(d => d.value),
-                    backgroundColor: this.props.color,
-                    borderColor: this.props.color
-                }]
+                labels: reports.labels,
+                datasets: reports.data,
             }
         });
     }

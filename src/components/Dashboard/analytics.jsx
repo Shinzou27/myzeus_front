@@ -15,7 +15,6 @@ export function getBrandPreference(reports) {
             });
         }
     });
-    console.log(grouped);
     return grouped;
 }
 
@@ -23,13 +22,13 @@ export function getCostRange(reports) {
     const intervalNumber = 6
     const maxValue = Math.ceil(reports.map(r => parseFloat(r.cost.replace(',', '.'))).sort((a, b) => {
         return a - b;
-    })[reports.length-1]);
+    })[reports.length - 1]);
     let sentinels = {
         min: 0,
         max: maxValue
     }
     const step = Math.ceil(sentinels.max) / intervalNumber;
-    
+
     let grouped = [{
         limit: sentinels.min + step * 1,
         label: `R$00,00 a R$${(sentinels.min + step * 1).toFixed(2).replace('.', ',')}`,
@@ -81,7 +80,6 @@ export function getDataRange(reports) {
             k++;
         }
     };
-    console.log(grouped);
     reports.forEach((r) => {
         const date = new Date(r.date);
         const monthYear = `${months[date.getUTCMonth()]}/${(date.getUTCFullYear()).toString().slice(2)}`
@@ -91,11 +89,74 @@ export function getDataRange(reports) {
     });
     return grouped;
 }
+export function getSeparatedDataRange(reports) {
+    let sentinels = {
+        min: reports.sort((a, b) => {
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return (a - b);
+        })[0],
+        max: reports.sort((a, b) => {
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return (a - b);
+        })[reports.length - 1]
+    }
+    let groupedByPet = [];
+    reports.forEach((r) => {
+        if (groupedByPet.map(item => item.label).includes(r.petId)) {
+            const selected = groupedByPet[groupedByPet.map(item => item.label).indexOf(r.petId)];
+            selected.reports.push(r);
+        } else {
+            groupedByPet.push({
+                label: r.petId,
+                reports: [r],
+                data: []
+            });
+        }
+    });
+    let grouped = {
+        labels: [],
+        data: []
+    };
+    const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+    const minMonth = new Date(sentinels.min.date).getUTCMonth();
+    const minYear = new Date(sentinels.min.date).getUTCFullYear();
+    const maxMonth = new Date(sentinels.max.date).getUTCMonth();
+    const maxYear = new Date(sentinels.max.date).getUTCFullYear();
+    let k = minYear;
+    for (let i = minMonth; i <= 11; i++) {
+        if (k < maxYear || (k == maxYear && i <= maxMonth)) {
+            grouped.labels.push(`${months[i]}/${(k).toString().slice(2)}`)
+        }
+        if (i == 11 && k < maxYear && (grouped.length >= 12 - minMonth - 1)) {
+            i = -1;
+            k++;
+        }
+    };
+    groupedByPet.forEach((pet) => {
+        pet.data.length = grouped.labels.length;
+        pet.data.fill(0);
+        pet.reports.forEach((r) => {
+            const date = new Date(r.date);
+            const monthYear = `${months[date.getUTCMonth()]}/${(date.getUTCFullYear()).toString().slice(2)}`
+            if (grouped.labels.includes(monthYear)) {
+                pet.data[grouped.labels.indexOf(monthYear)]++;
+            }
+        });
+        grouped.data.push({
+            label: pet.label,
+            data: pet.data
+        });
+    })
+    return grouped;
+}
 export function getSummary(reports) {
+    getSeparatedDataRange(reports)
     let data = [getDataRange(reports), getCostRange(reports), getBrandPreference(reports)];
     data = data.map(set => set.sort((a, b) => {
         return a.value - b.value;
-    })[set.length-1])
+    })[set.length - 1])
     data.push(getMeanPrice(reports));
     data.push(getBestBuy(reports));
     return data;
@@ -106,7 +167,7 @@ export function getMeanPrice(reports) {
     reports.forEach((r) => {
         total += parseFloat(r.cost.replace(',', '.'))
     });
-    return `R$${(total/reports.length).toFixed(2)}`;
+    return `R$${(total / reports.length).toFixed(2)}`;
 }
 
 export function getBestBuy(reports) {
@@ -115,7 +176,6 @@ export function getBestBuy(reports) {
     let bestBuy;
     summarizedByBranch.forEach((b) => {
         const amountPerCost = b.totalAmount / b.totalCost;
-        console.log(b.totalAmount, b.totalCost, amountPerCost);
         if (result < amountPerCost) {
             result = amountPerCost;
             bestBuy = b.label;

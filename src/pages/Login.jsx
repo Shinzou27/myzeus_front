@@ -20,7 +20,7 @@ function Login() {
         api.get(`/users?username=${username}&password=${password}`).then((response) => {
             window.localStorage.setItem('user', JSON.stringify(response.data));
             id = parseInt(response.data.id);
-            api.get(`/reports?id=1`).then((response) => {
+            api.get(`/reports?id=${id}`).then((response) => {
                 window.localStorage.setItem('reports', JSON.stringify(response.data));
             })
             api.get(`/pets?id=${id}`).then((response) => {

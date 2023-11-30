@@ -12,7 +12,10 @@
   .dashboard-summary h6 {
     font-size: 14px;
   }
-  
+  .dashboard-summary span {
+    background-color: #ebb915;
+    color: #000;
+  }
   .dashboard-redirect {
     height: 9vh;
     display: flex;

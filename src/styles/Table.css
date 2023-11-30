@@ -8,3 +8,18 @@
 #edit, #delete, #date-column, #cost-column, #brand-column, #amount-column, th {
   color: #000!important;
 }
+
+#edit:hover, #delete:hover {
+  transition: .3s;
+  color: #ebb915!important;
+}
+
+.filter-button {
+  width: 130px;
+}
+.pet-button {
+  margin: 1vh 1vw;
+  border-radius: 0.35vw;
+  cursor: pointer;
+  color: #fff;
+}

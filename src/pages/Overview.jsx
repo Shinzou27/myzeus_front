@@ -14,11 +14,12 @@ function Overview() {
     const [limits, setLimits] = useState({ start: new Date('2000-01-01'), end: new Date('2099-12-31') });
     const [data, setData] = useState([]);
     const [fixedData, setFixedData] = useState([]);
+    const [filteredPets, setFilteredPets] = useState([]);
     const [highlight, setHighlight] = useState();
     const [highlightPet, setHighlightPet] = useState();
     const [modalType, setModalType] = useState('');
     const [show, setShow] = useState(false);
-    const [sorter, setSorter] = useState('date');
+    const [sorter, setSorter] = useState('');
     function handleClose() {
         setShow(false)
     };
@@ -28,7 +29,6 @@ function Overview() {
     function dateInterval(start, end) {
         isNaN(new Date(start).getFullYear()) ? start = limits.start : start = new Date(start);
         isNaN(new Date(end).getFullYear()) ? end = limits.end : end = new Date(end);
-        console.log(start, end);
         setLimits({ start: start, end: end });
     }
     function sortDate(a, b) {
@@ -42,21 +42,28 @@ function Overview() {
     function sortBrand(a, b) {
         return a.brand.charCodeAt(0) - b.brand.charCodeAt(0);
     }
-    
     function sortAmount(a, b) {
         return a.amount - b.amount;
     }
     useEffect(() => {
-        console.log(fixedData);
         let aux = fixedData.filter((item) => new Date(item.date) <= limits.end);
         aux = aux.filter((item) => new Date(item.date) >= limits.start);
-        setData(aux.sort(sortDate));
-    }, [limits]);
+        if (filteredPets.length > 0) (aux = aux.filter((report) => filteredPets.includes(report.petId)));
+        if (sorter .includes('cost')) {
+            aux.sort(sortCost);
+        } else if (sorter .includes('amount')) {
+            aux.sort(sortAmount);
+        } else if (sorter .includes('brand')) {
+            aux.sort(sortBrand);
+        } else {
+            aux.sort(sortDate);
+        }
+        sorter.includes('desc') ? setData(aux.reverse()) : setData(aux);        
+    }, [limits, filteredPets, sorter]);
     useEffect(() => {
         api.get(`/reports?id=${user.id}`).then((response) => {
             setFixedData(response.data.sort(sortDate));
             setData(response.data.sort(sortDate));
-            console.log(fixedData);
             window.localStorage.setItem('reports', JSON.stringify(response.data))
         });
     }, []);
@@ -67,12 +74,29 @@ function Overview() {
         handleShow();
     }
     function filterBrand(brand) {
-        let aux = fixedData.filter((report) => report.brand == brand);
+        let aux = data.filter((report) => report.brand == brand);
         setData(aux);
     }
     function filterPet(pet) {
-        let aux = fixedData.filter((report) => report.petId == pet);
-        setData(aux);
+        if (!filteredPets.includes(pet)) {
+            let aux = filteredPets;
+            aux.push(pet);
+            setFilteredPets(aux);
+        } else {
+            let aux = filteredPets;
+            aux.splice(aux.indexOf(pet), 1);
+            setFilteredPets(aux);
+        }
+    }
+    function resetFilters() {
+        setLimits({ start: new Date('2000-01-01'), end: new Date('2099-12-31') });
+        setData(fixedData);
+        setFilteredPets([]);
+        const petContainer = document.getElementById('filter-container');
+        for (let i = 0; i < petContainer.childNodes.length; i++) {
+            petContainer.childNodes[i].classList.add('proj-30')
+            petContainer.childNodes[i].classList.remove('proj-10');
+        }
     }
     return (
         <Container className="mt-5">
@@ -81,9 +105,9 @@ function Overview() {
                 <h1>Visão Geral</h1>
             </Container>
             <Container>
-                <TableFilter handleClick={dateInterval} handlePet={filterPet}/>
-                <Button className="proj-10 mb-2">Exportar para PDF</Button>
-                <FoodTable data={data} handleModal={showModal} setModalType={setModalType} />
+                <TableFilter handleClick={dateInterval} handlePet={filterPet} />
+                <Button onClick={resetFilters} variant="danger" className="mb-2 filter-button">Limpar filtros</Button>
+                <FoodTable data={data} handleModal={showModal} setModalType={setModalType} sorter={sorter} setSorter={setSorter} />
             </Container>
         </Container>
     )

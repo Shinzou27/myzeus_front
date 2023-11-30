@@ -14,8 +14,7 @@ function FoodTable({data, handleModal, setModalType, sorter, setSorter}) {
                     {data.map((item) => 
                         (<TableRow key={uuidv4()}
                             report={item}
-                            handleModal={handleModal}
-                            setModalType={setModalType} />)
+                            handleModal={handleModal}/>)
                     )}
                 </tbody>
             </Table>

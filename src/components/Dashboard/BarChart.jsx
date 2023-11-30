@@ -1,6 +1,5 @@
 import { Chart, registerables } from "chart.js";
 import React from "react";
-import { useState, useEffect } from "react";
 import { getSeparatedCostRange } from "./analytics";
 
 class BarChart extends React.Component {

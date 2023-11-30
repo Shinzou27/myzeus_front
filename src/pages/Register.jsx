@@ -1,4 +1,4 @@
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import UserForm from "../components/User/UserForm";
 import { api } from "../services/api";
 function Register() {

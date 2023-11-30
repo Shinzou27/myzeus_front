@@ -1,7 +1,7 @@
 import { PencilSquare } from 'react-bootstrap-icons'
 import { Trash } from 'react-bootstrap-icons'
 
-function TableRow({ report, handleModal, setModalType }) {
+function TableRow({ report, handleModal }) {
     const pets = JSON.parse(window.localStorage.getItem('pets'));
     function parseDate(date) {
         const toFormat = new Date(date);

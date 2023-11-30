@@ -13,7 +13,6 @@ function Profile() {
     document.title = 'Meu Zeus | Perfil';
     const [show, setShow] = useState(false);
     const nav = useNavigate();
-    console.log(user);
     function updatePassword() {
         handleShow();
         const currentPassword = document.getElementById('currentPassword').value;
@@ -41,26 +40,22 @@ function Profile() {
             <h1>Perfil de {user.username}</h1>
             <hr />
             <Container className="d-flex justify-content-between">
-                <Image width={256} height={256} className="align-self-center" src={placeholder} />
+                <Image width={256} height={256} className="align-self-center profile-img" src={placeholder} />
                 <Container className="profile-info">
                     <Container>
-                        <h4>Informações pessoais</h4>
-                        <h6>Usuário: </h6>
+                        <h4 className="fw-bold">Informações pessoais</h4>
+                        <h6 className="fw-bold">Usuário: </h6>
                         <p>{user.username}</p>
-                        <h6>Senha</h6>
+                        <h6 className="fw-bold">Senha</h6>
                         <p>••••••••</p>
                     </Container>
-                    <h6>Usuário: </h6>
-                    <p>{user.username}</p>
-                    <h6>Senha</h6>
-                    <p>••••••••</p>
                     <Container className="profile-options">
                         <a onClick={handleShow}>Alterar senha</a>
                         <a className="text-danger text-decoration-none" onClick={handleLogout}>Sair</a>
                     </Container>
                 </Container>
                 <Container className="profile-pet">
-                    <h4>Seus pets</h4>
+                    <h4 className="fw-bold">Seus pets</h4>
                     <PetCarousel pets={pets} />
                     <Button href="/newpet" className="proj-30">Adicionar novo pet</Button>
                 </Container>

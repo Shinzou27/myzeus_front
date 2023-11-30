@@ -9,9 +9,9 @@ function GeneralCharts({ user }) {
     const colors = ['#19ff79', '#fcd303', '#10a166', '#deab02', '#00f391', '#ebb915'];
     function handleFilter(type) {
         if(type == 'date') {
-            setChart(<LineChart title='Compras por mês' color={colors[0]}/>)
+            setChart(<LineChart title='Compras por mês' color={colors}/>)
         } else if (type == 'cost') {
-            setChart(<BarChart title='Intervalos de preço' color='#ebb915' data={user} />)
+            setChart(<BarChart title='Intervalos de preço' color={colors} data={user} />)
         } else {
             setChart(<PieChart title='Preferência de marcas' colors={colors} data={user} />)
         }

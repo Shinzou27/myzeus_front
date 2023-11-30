@@ -1,10 +1,12 @@
-import { Carousel } from "react-bootstrap";
+import { Carousel, Image } from "react-bootstrap";
+
 function PetCarousel({ pets }) {
     return (
         <Carousel>
             {
                 pets.map((pet) => (
-                    <Carousel.Item className="pet-carousel" interval={2000}>
+                    <Carousel.Item key={pet.id} className="pet-carousel" interval={2000}>
+                        <Image width={32} src={`./src/assets/animals/${pet.type}.svg`}/>
                         <Carousel.Caption>
                             <h3 className="text-dark">{pet.name}</h3>
                             <p className="text-dark">{pet.breed}</p>

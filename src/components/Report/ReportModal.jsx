@@ -18,13 +18,11 @@ function ReportModal({ report, pet, show, handleClose, type }) {
             amount: newAmount,
             petId: newPetId
         }).then((response) => {
-            console.log(response.data);
             window.location.reload();
         })
     }
     function handleDelete() {
         api.delete(`/reports/${report.id}`).then((response) => {
-            console.log(response.data);
             window.location.reload();
         })
     }
@@ -51,66 +49,70 @@ function ReportModal({ report, pet, show, handleClose, type }) {
             </Modal.Footer>
         </>
         : type == 'edit' ? modal =
-        <>
-            <Modal.Header closeButton>
-                <Modal.Title>Editar relatório</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Row>
-                    <label className='fw-bold'>Data</label>
-                    <input type="date" id='newDate' defaultValue={new Date(report.date).toISOString().slice(0, 10)} />
-                </Row>
-                <Row>
-                    <label className='fw-bold'>Pet</label>
-                    <select id='newPet' defaultValue={pet.name}>
-                    {pets.map((pet) => <option key={pet.id} value={pet.id}>{pet.name}</option>)}
-                    </select>
-                </Row>
-                <Row>
-                    <label className='fw-bold'>Custo</label>
-                    <input type="text" id='newCost' defaultValue={report.cost} />
-                </Row>
-                <Row>
-                    <label className='fw-bold'>Marca</label>
-                    <input type="text" id='newBrand' defaultValue={report.brand} />
-                </Row>
-                <Row>
-                    <label className='fw-bold'>Quantidade</label>
-                    <input type="number" id='newAmount' defaultValue={report.amount} />
-                </Row>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={handleClose} variant='danger'>Cancelar</Button>
-                <Button onClick={handleEdit} variant='success'>Salvar</Button>
-            </Modal.Footer>
-        </>
-        : modal = 
-        <>
-            <Modal.Header closeButton>
-                <Modal.Title>Detalhes do relatório</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Row>
-                    <label className='fw-bold'>Data</label>
-                    <p>{parseDate(report.date)}</p>
-                </Row>
-                <Row>
-                    <label className='fw-bold'>Custo</label>
-                    <p>{report.cost}</p>
-                </Row>
-                <Row>
-                    <label className='fw-bold'>Marca</label>
-                    <p>{report.brand}</p>
-                </Row>
-                <Row>
-                    <label className='fw-bold'>Quantidade (g)</label>
-                    <p>{report.amount}</p>
-                </Row>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={handleClose} variant='danger'>Fechar</Button>
-            </Modal.Footer>
-        </>
+            <>
+                <Modal.Header closeButton>
+                    <Modal.Title>Editar relatório</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Row>
+                        <label className='fw-bold'>Data</label>
+                        <input type="date" id='newDate' defaultValue={new Date(report.date).toISOString().slice(0, 10)} />
+                    </Row>
+                    <Row>
+                        <label className='fw-bold'>Pet</label>
+                        <select id='newPet' defaultValue={pet.name}>
+                            {pets.map((pet) => <option key={pet.id} value={pet.id}>{pet.name}</option>)}
+                        </select>
+                    </Row>
+                    <Row>
+                        <label className='fw-bold'>Custo</label>
+                        <input type="text" id='newCost' defaultValue={report.cost} />
+                    </Row>
+                    <Row>
+                        <label className='fw-bold'>Marca</label>
+                        <input type="text" id='newBrand' defaultValue={report.brand} />
+                    </Row>
+                    <Row>
+                        <label className='fw-bold'>Quantidade</label>
+                        <input type="number" id='newAmount' defaultValue={report.amount} />
+                    </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleClose} variant='danger'>Cancelar</Button>
+                    <Button onClick={handleEdit} variant='success'>Salvar</Button>
+                </Modal.Footer>
+            </>
+            : modal =
+            <>
+                <Modal.Header closeButton>
+                    <Modal.Title>Detalhes do relatório</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Row>
+                        <label className='fw-bold'>Pet</label>
+                        <p>{pets.filter((pet) => pet.id == report.petId)[0].name}</p>
+                    </Row>
+                    <Row>
+                        <label className='fw-bold'>Data</label>
+                        <p>{parseDate(report.date)}</p>
+                    </Row>
+                    <Row>
+                        <label className='fw-bold'>Custo</label>
+                        <p>{report.cost}</p>
+                    </Row>
+                    <Row>
+                        <label className='fw-bold'>Marca</label>
+                        <p>{report.brand}</p>
+                    </Row>
+                    <Row>
+                        <label className='fw-bold'>Quantidade (g)</label>
+                        <p>{report.amount}</p>
+                    </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleClose} variant='danger'>Fechar</Button>
+                </Modal.Footer>
+            </>
 
     return (
         <>

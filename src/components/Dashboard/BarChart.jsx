@@ -1,33 +1,31 @@
 import { Chart, registerables } from "chart.js";
 import React from "react";
 import { useState, useEffect } from "react";
-import { getCostRange } from "./analytics";
+import { getSeparatedCostRange } from "./analytics";
 
 class BarChart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.chartRef = React.createRef();
-        Chart.register(...registerables);
+  constructor(props) {
+    super(props);
+    this.chartRef = React.createRef();
+    Chart.register(...registerables);
+  }
+  componentDidMount() {
+    let pets = JSON.parse(window.localStorage.getItem('pets'));
+    let reports = getSeparatedCostRange(JSON.parse(window.localStorage.getItem('reports')));
+    reports.data.forEach(petData => {
+      petData.label = pets.filter((pet) => pet.id == petData.label)[0].name;
+    });
+    this.myChart = new Chart(this.chartRef.current, {
+      type: 'bar',
+      data: {
+        labels: reports.labels,
+        datasets: reports.data,
     }
-    componentDidMount() {
-        let reports = getCostRange(JSON.parse(window.localStorage.getItem('reports')));
-        console.log(reports);
-        this.myChart = new Chart(this.chartRef.current, {
-            type: 'bar',
-            data: {
-              labels: reports.map(d => d.label),
-              datasets: [{
-                label: this.props.title,
-                data: reports.map(d => d.value),
-                backgroundColor: this.props.color,
-                maxBarThickness: 60
-              }]
-            }
-          });
-    }
-    render() { 
-        return (<canvas ref={this.chartRef}/>);
-    }
+    });
+  }
+  render() {
+    return (<canvas ref={this.chartRef} />);
+  }
 }
- 
+
 export default BarChart;

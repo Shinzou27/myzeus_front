@@ -47,7 +47,59 @@ export function getCostRange(reports) {
 
     return grouped;
 }
+export function getSeparatedCostRange(reports) {
+    let groupedByPet = [];
+    reports.forEach((r) => {
+        if (groupedByPet.map(item => item.label).includes(r.petId)) {
+            const selected = groupedByPet[groupedByPet.map(item => item.label).indexOf(r.petId)];
+            selected.reports.push(r);
+        } else {
+            groupedByPet.push({
+                label: r.petId,
+                reports: [r],
+                data: []
+            });
+        }
+    });
 
+    const intervalNumber = 6
+    const maxValue = Math.ceil(reports.map(r => parseFloat(r.cost.replace(',', '.'))).sort((a, b) => {
+        return a - b;
+    })[reports.length - 1]);
+    let sentinels = {
+        min: 0,
+        max: maxValue
+    }
+    const step = Math.ceil(sentinels.max) / intervalNumber;
+    let grouped = {
+        labels: [`R$00,00 a R$${(sentinels.min + step * 1).toFixed(2).replace('.', ',')}`],
+        data: []
+    };
+    let limits = [0];
+    for (let i = 1; i < intervalNumber; i++) {
+        const min = sentinels.min + i * step;
+        const max = sentinels.min + (i + 1) * step;
+        limits.push(min);
+        grouped.labels.push(
+            `R$${min.toFixed(2).replace('.', ',')} a R$${max.toFixed(2).replace('.', ',')}`,
+        )
+    }
+    groupedByPet.forEach((pet) => {
+        pet.data.length = grouped.labels.length;
+        pet.data.fill(0);
+        pet.reports.forEach((r) => {
+            let index = limits.findIndex((l) => l > parseFloat(r.cost.replace(',', '.')));
+            if (index == -1) index = limits.length;
+            pet.data[index-1]++;
+        })
+        grouped.data.push({
+            label: pet.label,
+            data: pet.data
+        })
+    });
+
+    return grouped;
+}
 export function getDataRange(reports) {
     let sentinels = {
         min: reports.sort((a, b) => {
@@ -129,7 +181,7 @@ export function getSeparatedDataRange(reports) {
         if (k < maxYear || (k == maxYear && i <= maxMonth)) {
             grouped.labels.push(`${months[i]}/${(k).toString().slice(2)}`)
         }
-        if (i == 11 && k < maxYear && (grouped.length >= 12 - minMonth - 1)) {
+        if (i == 11 && k < maxYear && (grouped.labels.length >= 12 - minMonth - 1)) {
             i = -1;
             k++;
         }
@@ -146,13 +198,13 @@ export function getSeparatedDataRange(reports) {
         });
         grouped.data.push({
             label: pet.label,
-            data: pet.data
+            data: pet.data,
+            color: ''
         });
     })
     return grouped;
 }
 export function getSummary(reports) {
-    getSeparatedDataRange(reports)
     let data = [getDataRange(reports), getCostRange(reports), getBrandPreference(reports)];
     data = data.map(set => set.sort((a, b) => {
         return a.value - b.value;

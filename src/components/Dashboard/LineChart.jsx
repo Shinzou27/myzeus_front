@@ -11,12 +11,13 @@ class LineChart extends React.Component {
     componentDidMount() {
         let pets = JSON.parse(window.localStorage.getItem('pets'));
         let reports = getSeparatedDataRange(JSON.parse(window.localStorage.getItem('reports')));
+        let colors = this.props.color;
         reports.data.forEach(petData => {
-            console.log(pets.forEach((pet) => pet.id == petData.label));
+            const color = colors.shift()
             petData.label = pets.filter((pet) => pet.id == petData.label)[0].name;
+            petData.backgroundColor = color;
+            petData.borderColor = color;
         });
-        console.log(reports);
-        const test = reports.data[0];
         this.myChart = new Chart(this.chartRef.current, {
             type: 'line',
             data: {

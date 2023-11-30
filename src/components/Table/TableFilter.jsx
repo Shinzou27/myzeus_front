@@ -2,12 +2,18 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/esm/Container';
-function TableFilter({handleClick, handlePet}) {
+function TableFilter({ handleClick, handlePet }) {
     const pets = JSON.parse(window.localStorage.getItem('pets'));
     function sendDates() {
         const start = document.getElementById('start').value;
         const end = document.getElementById('end').value;
         handleClick(start, end);
+    }
+    function sendPets(e, id) {
+        const proj10 = 'pet-button proj-10 col';
+        const proj30 = 'pet-button proj-30 col';
+        e.target.className == proj10 ? e.target.className = proj30 : e.target.className = proj10;
+        handlePet(id);
     }
     return (
         <Container className='m-auto w-50'>
@@ -21,13 +27,13 @@ function TableFilter({handleClick, handlePet}) {
                     <Row><input className='border-0 w-75 m-auto' type="date" id="end" /></Row>
                 </Col>
             </Row>
-            <Row className='my-2'>
-                <h6>Filtrar por pet</h6>
+            <h6 className='my-2'>Filtrar por pet</h6>
+            <Row  id='filter-container'>
                 {pets.map((pet) => (
-                    <Col onClick={() => handlePet(pet.id)}>{pet.name}</Col>
+                    <Col className='pet-button proj-30' key={pet.id} onClick={(e) => sendPets(e, pet.id)}>{pet.name}</Col>
                 ))}
             </Row>
-            <Button onClick={sendDates} className='my-2 proj-30'>Filtrar</Button>
+            <Button onClick={sendDates} className='my-2 proj-30 filter-button'>Filtrar</Button>
         </Container>
     );
 }

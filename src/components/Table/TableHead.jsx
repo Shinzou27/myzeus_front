@@ -1,13 +1,20 @@
-function TableHead() {
+function TableHead({sorter, setSorter}) {
+    function sendSort(type) {
+        if (sorter.includes('_asc')) {
+            setSorter(`${type}_desc`);
+        } else {
+            setSorter(`${type}_asc`);
+        }
+    }
     return ( 
         <>
         <thead>
             <tr>
-                <th>Dia</th>
-                <th>Pet</th>
-                <th>Custo</th>
-                <th>Marca</th>
-                <th>Quantidade</th>
+                <th onClick={() => sendSort('date')}>Dia</th>
+                <th onClick={() => sendSort('pet')}>Pet</th>
+                <th onClick={() => sendSort('cost')}>Custo</th>
+                <th onClick={() => sendSort('brand')}>Marca</th>
+                <th onClick={() => sendSort('amount')}>Quantidade</th>
                 <th></th>
             </tr>
         </thead>

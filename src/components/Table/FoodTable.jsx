@@ -5,11 +5,11 @@ import TableRow from './TableRow';
 import Container from 'react-bootstrap/esm/Container';
 import '../../styles/Table.css';
 
-function FoodTable({data, handleModal, setModalType, sorter}) {
+function FoodTable({data, handleModal, setModalType, sorter, setSorter}) {
     return (
         <Container>
             <Table bordered striped hover className='m-auto w-75'>
-                <TableHead/>
+                <TableHead sorter={sorter} setSorter={setSorter}/>
                 <tbody>
                     {data.map((item) => 
                         (<TableRow key={uuidv4()}

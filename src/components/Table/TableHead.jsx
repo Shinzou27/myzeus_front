@@ -1,6 +1,6 @@
 function TableHead({sorter, setSorter}) {
     function sendSort(type) {
-        if (sorter.includes('_asc')) {
+        if (sorter.includes(`${type}_asc`)) {
             setSorter(`${type}_desc`);
         } else {
             setSorter(`${type}_asc`);

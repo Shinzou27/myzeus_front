@@ -6,7 +6,7 @@ function PetForm({handler}) {
             <Form.Group as={Row}>
                 <Form.Label column>Nome:</Form.Label>
                 <Col>
-                    <Form.Control required id="name" size="sm" type="text"></Form.Control>
+                    <Form.Control required id="name" size="sm" type="text"/>
                 </Col>
             </Form.Group>
             <Form.Group as={Row}>
@@ -24,7 +24,7 @@ function PetForm({handler}) {
             <Form.Group as={Row}>
                 <Form.Label column>Raça:</Form.Label>
                 <Col>
-                    <Form.Control required id="breed" size="sm" type="text"></Form.Control>
+                    <Form.Control required id="breed" size="sm" type="text"/>
                 </Col>
             </Form.Group>
             <Button onClick={handler} type="submit" variant="success">Adicionar</Button>

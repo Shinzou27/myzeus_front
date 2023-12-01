@@ -20,7 +20,7 @@ function Profile() {
         api.put(`/users/${user.id}`, {
             current: currentPassword,
             new: newPassword
-        }).then((response) => console.log(response.data))
+        }).then((response) => window.localStorage.setItem('user', response.data))
     }
     function handleLogout() {
         window.localStorage.removeItem('user');

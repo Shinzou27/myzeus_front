@@ -17,29 +17,33 @@ function Login() {
         const password = document.getElementById('password').value;
         let id;
         api.get(`/users?username=${username}&password=${password}`).then((response) => {
-            window.localStorage.setItem('user', JSON.stringify(response.data));
-            id = parseInt(response.data.id);
-            api.get(`/reports?id=${id}`).then((response) => {
-                window.localStorage.setItem('reports', JSON.stringify(response.data));
-            })
-            api.get(`/pets?id=${id}`).then((response) => {
-                window.localStorage.setItem('pets', JSON.stringify(response.data));
-            })
-            nav('/');
-            window.location.reload();
+            if (response.data.id) {
+                window.localStorage.setItem('user', JSON.stringify(response.data));
+                id = parseInt(response.data.id);
+                api.get(`/reports?id=${id}`).then((response) => {
+                    window.localStorage.setItem('reports', JSON.stringify(response.data));
+                })
+                api.get(`/pets?id=${id}`).then((response) => {
+                    window.localStorage.setItem('pets', JSON.stringify(response.data));
+                })
+                nav('/');
+                window.location.reload();
+            } else {
+                setMessage(response.data.message);
+                setType('danger');
+                setShow(true);
+                setTimeout(() => {
+                    setShow(false);
+                }, 3000);
+            }
         }).catch((e) => {
-            setMessage('Usuário ou senha inválidos.');
-            setType('danger');
-            setShow(true);
-            setTimeout(() => {
-                setShow(false);
-            }, 3000);
+            console.log(e.message);
         });
     }
     return (
         <Container className="mt-5">
             <h1>Entrar</h1>
-            <Message show={show} txt={message} type={type}/>
+            <Message show={show} txt={message} type={type} />
             <UserForm handler={handleLogin} btnText={'Entrar'} />
             <p>Não possui uma conta? <a className="text-decoration-none" href="/register">Criar</a></p>
         </Container>

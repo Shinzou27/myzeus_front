@@ -39,8 +39,13 @@ function Overview() {
     function sortCost(a, b) {
         return parseFloat(a.cost.replace(',', '.')) - parseFloat(b.cost.replace(',', '.'));
     }
+    function sortPet(a, b) {
+        const petA = pets.filter((pet) => pet.id == a.petId)[0].name;
+        const petB = pets.filter((pet) => pet.id == b.petId)[0].name;
+        return petA.localeCompare(petB);
+    }
     function sortBrand(a, b) {
-        return a.brand.charCodeAt(0) - b.brand.charCodeAt(0);
+        return a.brand.localeCompare(b.brand);
     }
     function sortAmount(a, b) {
         return a.amount - b.amount;
@@ -55,6 +60,8 @@ function Overview() {
             aux.sort(sortAmount);
         } else if (sorter .includes('brand')) {
             aux.sort(sortBrand);
+        } else if (sorter .includes('pet')) {
+            aux.sort(sortPet);
         } else {
             aux.sort(sortDate);
         }

@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 
 export const AuthContext = createContext({});
-export function AuthContextProvider({children}) {
+export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const isAuthenticated = !user;
 
@@ -11,33 +11,39 @@ export function AuthContextProvider({children}) {
         setUser(null);
     }
     async function login(username, password) {
+        const credentials = {username: username, password: password};
         try {
-            api.post('/login', {
-                username: username,
-                password: password
-            }).then((response) => {
-                const authData = {
-                    token: response.data.token,
-                    user: response.data.user
-                }
-                localStorage.setItem('user', JSON.stringify(authData));
-                api.defaults.headers['Authorization'] = `Bearer ${authData.token}`
-                setUser(user);
-            })
+            const response = await api.post('/login', credentials)
+            const {token, id, username, message} = response.data;
+            const authData = {
+                token: token,
+                id: id,
+                username: username
+            }
+            localStorage.setItem('user', JSON.stringify(authData));
+            api.defaults.headers['Authorization'] = `Bearer ${authData.token}`
+            setUser(username);
+            return {
+                user: authData.username,
+                error: null,
+                message: message
+            };
         } catch (error) {
-            console.log(error);
-            return;
+            return {
+                user: null,
+                error
+            };
         }
     }
     useEffect(() => {
         const authData = JSON.parse(localStorage.getItem('user'));
-        if (!authData.token) {
-            api.defaults.headers['Authorization'] = '';
+        if (authData == null) {
             setUser({});
+            api.defaults.headers['Authorization'] = '';
         }
     }, [])
     return (
-        <AuthContext.Provider value={{user, isAuthenticated, logout}}>
+        <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

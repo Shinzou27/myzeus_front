@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Message from "../components/Fixed/Message";
 import UserForm from "../components/User/UserForm";
 import { useState } from "react";
+import {useAuth} from "../context/useAuth";
 
 function Login() {
     document.title = 'Meu Zeus | Entrar';
@@ -11,10 +12,25 @@ function Login() {
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState('');
     const [type, setType] = useState('');
-    function handleLogin(e) {
+    const {login} = useAuth();
+    async function handleLogin(e) {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+        const response = await login(username, password);
+        console.log(response);
+        if (response.user) {
+            nav('/');
+            window.location.reload();
+        } else {
+            setMessage(response.message);
+            setType('danger');
+            setShow(true);
+            setTimeout(() => {
+                setShow(false);
+            }, 3000);
+        }
+        /*
         let id;
         api.get(`/users?username=${username}&password=${password}`).then((response) => {
             if (response.data.id) {
@@ -26,19 +42,12 @@ function Login() {
                 api.get(`/pets?id=${id}`).then((response) => {
                     window.localStorage.setItem('pets', JSON.stringify(response.data));
                 })
-                nav('/');
-                window.location.reload();
             } else {
-                setMessage(response.data.message);
-                setType('danger');
-                setShow(true);
-                setTimeout(() => {
-                    setShow(false);
-                }, 3000);
             }
         }).catch((e) => {
             console.log(e.message);
         });
+        */
     }
     return (
         <Container className="mt-5">

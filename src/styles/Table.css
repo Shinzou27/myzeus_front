@@ -23,9 +23,22 @@
   cursor: pointer;
   color: #fff;
 }
+
+.unselected {
+  opacity: 0.5;
+}
+.selected {
+  opacity: 1;
+}
+
 .table-arrow {
-  color: #ebb915!important;
+  cursor: pointer!important;
 }
 .table-arrow-desc {
+  cursor: pointer!important;
   transform: rotate(180deg);
+}
+
+.table-arrow-current {
+  color: #ebb915!important;
 }

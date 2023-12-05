@@ -1,8 +1,11 @@
 import { Form, Row, Col, Button } from "react-bootstrap";
 
 function PetForm({handler}) {
+    function submit(e) {
+        e.preventDefault();
+    }
     return ( 
-        <Form className="mt-5 w-50 m-auto">
+        <Form onSubmit={submit} method="post" className="mt-5 w-50 m-auto">
             <Form.Group as={Row}>
                 <Form.Label column>Nome:</Form.Label>
                 <Col>
@@ -27,7 +30,7 @@ function PetForm({handler}) {
                     <Form.Control required id="breed" size="sm" type="text"/>
                 </Col>
             </Form.Group>
-            <Button onClick={handler} type="submit" variant="success">Adicionar</Button>
+            <Button onClick={handler} type="button" variant="success">Adicionar</Button>
         </Form>
      );
 }

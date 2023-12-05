@@ -1,17 +1,15 @@
 import { useEffect } from "react";
 import {useAuth} from "./useAuth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AuthWrapper({children}) {
     const auth = useAuth();
-    const location = useLocation();
     const nav = useNavigate();
-
     useEffect(() => {
-        if(!auth.user) {
+        if(!auth.loggedUser) {
             nav('/');
         }
-    }, [auth.user, location, nav]);
+    }, [auth.user, nav]);
     return children;
 }
 

@@ -1,3 +1,6 @@
 .nav-text:hover {
-    color: #ebb915!important;
-  }
+  color: #ebb915 !important;
+}
+.navbar-toggler-icon {
+  background-color: #ebb915 !important;
+}

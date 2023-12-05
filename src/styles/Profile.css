@@ -5,9 +5,10 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .profile-img {
   border: 1px solid #ebb915;
+  width: 80%;
+  height: auto;
 }
 
 .profile-info {
@@ -48,4 +49,11 @@
 
 .new-pet {
   color: #ebb915;
+}
+.form-check-input:checked {
+  background-color: #ebb915!important;
+  border-color: #ebb915!important;
+}
+.pet-removal-checkbox span {
+  background-color: #7befc1!important;
 }

@@ -1,4 +1,5 @@
-.new-report {
+.new-report, .login, .new-pet, .register {
+    height: 90vh;
     flex-direction: column;
     display: flex;
     flex-wrap: wrap;

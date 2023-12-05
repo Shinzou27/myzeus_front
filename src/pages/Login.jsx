@@ -30,7 +30,7 @@ function Login() {
         }
     }
     return (
-        <Container className="mt-5">
+        <Container className="mt-5 login">
             <h1>Entrar</h1>
             <Message show={show} txt={message} type={type} />
             <UserForm handler={handleLogin} btnText={'Entrar'} />

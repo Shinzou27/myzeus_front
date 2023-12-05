@@ -1,7 +1,7 @@
 import { Form, Row, Col, Button } from "react-bootstrap";
 function UserForm({handler, btnText}) {
     return (
-        <Form className="mt-5 w-50 m-auto">
+        <Form className="mt-5 w-50">
             <Form.Group as={Row}>
                 <Form.Label column>Nome de usuário:</Form.Label>
                 <Col>

@@ -31,7 +31,7 @@ function Register() {
         });
     }
     return (
-        <Container className="mt-5">
+        <Container className="mt-5 register">
             <h1>Criar conta</h1>
             <Message show={show} txt={message} type={type} />
             <UserForm handler={handleRegister} btnText={'Registrar'} />

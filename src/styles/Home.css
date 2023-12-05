@@ -38,11 +38,11 @@
   flex-wrap: wrap;
   justify-content: center;
   border-radius: 15px;
-  border: 1px solid #ebb915;
+  border: 3px solid #ebb915;
 }
 .pet-card {
   margin: 1vh 0vw;
-  border: 1px solid #00a764;
+  border: 3px solid #00a764;
   min-height: 33vh;
 }
 

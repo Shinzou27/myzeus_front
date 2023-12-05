@@ -18,10 +18,8 @@ function Login() {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const response = await login(username, password);
-        console.log(response);
         if (response.user) {
             nav('/');
-            window.location.reload();
         } else {
             setMessage(response.message);
             setType('danger');
@@ -30,24 +28,6 @@ function Login() {
                 setShow(false);
             }, 3000);
         }
-        /*
-        let id;
-        api.get(`/users?username=${username}&password=${password}`).then((response) => {
-            if (response.data.id) {
-                window.localStorage.setItem('user', JSON.stringify(response.data));
-                id = parseInt(response.data.id);
-                api.get(`/reports?id=${id}`).then((response) => {
-                    window.localStorage.setItem('reports', JSON.stringify(response.data));
-                })
-                api.get(`/pets?id=${id}`).then((response) => {
-                    window.localStorage.setItem('pets', JSON.stringify(response.data));
-                })
-            } else {
-            }
-        }).catch((e) => {
-            console.log(e.message);
-        });
-        */
     }
     return (
         <Container className="mt-5">

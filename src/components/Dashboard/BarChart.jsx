@@ -9,16 +9,21 @@ class BarChart extends React.Component {
     Chart.register(...registerables);
   }
   componentDidMount() {
-    let pets = JSON.parse(window.localStorage.getItem('pets'));
-    let reports = getSeparatedCostRange(JSON.parse(window.localStorage.getItem('reports')));
-    reports.data.forEach(petData => {
+    const pets = this.props.pets;
+    const reports = this.props.reports;
+    let colors = this.props.color;
+    let filteredData = getSeparatedCostRange(reports);
+    filteredData.data.forEach(petData => {
+      const color = colors.shift();
       petData.label = pets.filter((pet) => pet.id == petData.label)[0].name;
+      petData.backgroundColor = color;
+      petData.borderColor = color;
     });
     this.myChart = new Chart(this.chartRef.current, {
       type: 'bar',
       data: {
-        labels: reports.labels,
-        datasets: reports.data,
+        labels: filteredData.labels,
+        datasets: filteredData.data,
     }
     });
   }

@@ -9,10 +9,11 @@ class LineChart extends React.Component {
         Chart.register(...registerables);
     }
     componentDidMount() {
-        let pets = JSON.parse(window.localStorage.getItem('pets'));
-        let reports = getSeparatedDataRange(JSON.parse(window.localStorage.getItem('reports')));
+        const pets = this.props.pets;
+        const reports = this.props.reports;
+        let filteredData = getSeparatedDataRange(reports);
         let colors = this.props.color;
-        reports.data.forEach(petData => {
+        filteredData.data.forEach(petData => {
             const color = colors.shift()
             petData.label = pets.filter((pet) => pet.id == petData.label)[0].name;
             petData.backgroundColor = color;
@@ -21,8 +22,8 @@ class LineChart extends React.Component {
         this.myChart = new Chart(this.chartRef.current, {
             type: 'line',
             data: {
-                labels: reports.labels,
-                datasets: reports.data,
+                labels: filteredData.labels,
+                datasets: filteredData.data,
             }
         });
     }

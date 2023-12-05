@@ -1,8 +1,10 @@
 import { Container, Image } from "react-bootstrap";
 import { getSummary } from "./analytics";
 import placeholder from '../../assets/placeholder.jpeg'
+import { useAuth } from "../../context/useAuth";
 function UserSummary({user}) {
-    const summary = getSummary(JSON.parse(window.localStorage.getItem('reports')));
+    const {reports} = useAuth();
+    const summary = getSummary(reports);
     return ( 
         <Container className="dashboard-container dashboard-summary">
             <h1 className="fs-5 m-2">Resumo geral de: <span>{user.username}</span></h1>

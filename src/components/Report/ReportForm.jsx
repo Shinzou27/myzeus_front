@@ -1,11 +1,21 @@
 import Container from "react-bootstrap/esm/Container";
 import Button from 'react-bootstrap/Button'
 import '../../styles/ReportForm.css';
+import { useAuth } from "../../context/useAuth";
 
-function ReportForm({handler}) {
-    const pets = JSON.parse(window.localStorage.getItem('pets'));
+function ReportForm({ handler }) {
+    const { pets } = useAuth();
     function submit(e) {
         e.preventDefault();
+    }
+    function maskCost(e) {
+        let mask = ['R$', ','];
+        let input = e.target.value;
+        let preComma = input.slice(0, input.length - 2)
+        console.log(2 - preComma.length);
+        preComma.length < 2 ? preComma = '0'.repeat(2 - preComma.length) + preComma : preComma = preComma;
+        let postComma = input.slice(input.length - 2)
+        console.log(`${mask[0]} ${preComma}${mask[1]}${postComma}`);
     }
     return (
         <form onSubmit={submit} method="post">
@@ -15,7 +25,7 @@ function ReportForm({handler}) {
             </Container>
             <Container className="flex-end my-4">
                 <label className="mx-3 report-label">Custo (R$): </label>
-                <input id="cost" placeholder="Ex.: 50,00" className="mx-3 report-input" type="text" />
+                <input id="cost" placeholder="Ex.: 70,00" className="mx-3 report-input" type="number" />
             </Container>
             <Container className="flex-end my-4">
                 <label className="mx-3 report-label">Marca: </label>

@@ -2,9 +2,10 @@ import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/esm/Button';
 import { api } from '../../services/api';
+import { useAuth } from '../../context/useAuth';
 
 function ReportModal({ report, pet, show, handleClose, type }) {
-    const pets = JSON.parse(window.localStorage.getItem('pets'));
+    const {pets} = useAuth();
     function handleEdit() {
         const newDate = new Date(document.getElementById('newDate').value).toISOString();
         const newCost = document.getElementById('newCost').value;
@@ -22,7 +23,7 @@ function ReportModal({ report, pet, show, handleClose, type }) {
         })
     }
     function handleDelete() {
-        api.delete(`/reports/${report.id}`).then((response) => {
+        api.delete(`/reports/${report.id}`).then(() => {
             window.location.reload();
         })
     }

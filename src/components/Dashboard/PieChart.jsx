@@ -9,7 +9,7 @@ class PieChart extends React.Component {
         Chart.register(...registerables);
     }
     componentDidMount() {
-        let reports = getBrandPreference(JSON.parse(window.localStorage.getItem('reports')));
+        let reports = getBrandPreference(this.props.reports);
         this.myChart = new Chart(this.chartRef.current, {
             type: 'pie',
             data: {
@@ -17,7 +17,7 @@ class PieChart extends React.Component {
               datasets: [{
                 title: this.props.title,
                 data: reports.map(d => d.value),
-                backgroundColor: this.props.colors
+                backgroundColor: this.props.color
               }]
             }
           });

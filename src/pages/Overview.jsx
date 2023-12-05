@@ -6,10 +6,10 @@ import Button from "react-bootstrap/esm/Button"
 import { api } from "../services/api"
 
 import { useEffect, useState } from "react"
+import { useAuth } from "../context/useAuth"
 
 function Overview() {
-    const user = JSON.parse(window.localStorage.getItem('user'));
-    const pets = JSON.parse(window.localStorage.getItem('pets'));
+    const { loggedUser, reports, pets } = useAuth();
     document.title = 'Meu Zeus | Visão Geral';
     const [limits, setLimits] = useState({ start: new Date('2000-01-01'), end: new Date('2099-12-31') });
     const [data, setData] = useState([]);
@@ -54,25 +54,22 @@ function Overview() {
         let aux = fixedData.filter((item) => new Date(item.date) <= limits.end);
         aux = aux.filter((item) => new Date(item.date) >= limits.start);
         if (filteredPets.length > 0) (aux = aux.filter((report) => filteredPets.includes(report.petId)));
-        if (sorter .includes('cost')) {
+        if (sorter.includes('cost')) {
             aux.sort(sortCost);
-        } else if (sorter .includes('amount')) {
+        } else if (sorter.includes('amount')) {
             aux.sort(sortAmount);
-        } else if (sorter .includes('brand')) {
+        } else if (sorter.includes('brand')) {
             aux.sort(sortBrand);
-        } else if (sorter .includes('pet')) {
+        } else if (sorter.includes('pet')) {
             aux.sort(sortPet);
         } else {
             aux.sort(sortDate);
         }
-        sorter.includes('desc') ? setData(aux.reverse()) : setData(aux);        
+        sorter.includes('desc') ? setData(aux.reverse()) : setData(aux);
     }, [limits, filteredPets, sorter]);
     useEffect(() => {
-        api.get(`/reports?id=${user.id}`).then((response) => {
-            setFixedData(response.data.sort(sortDate));
-            setData(response.data.sort(sortDate));
-            window.localStorage.setItem('reports', JSON.stringify(response.data))
-        });
+        setFixedData(reports.sort(sortDate));
+        setData(reports.sort(sortDate));
     }, []);
     function showModal(report, type) {
         setHighlight(report);
@@ -101,8 +98,10 @@ function Overview() {
         setFilteredPets([]);
         const petContainer = document.getElementById('filter-container');
         for (let i = 0; i < petContainer.childNodes.length; i++) {
-            petContainer.childNodes[i].classList.add('proj-30')
+            petContainer.childNodes[i].classList.add('proj-30');
+            petContainer.childNodes[i].classList.add('unselected');
             petContainer.childNodes[i].classList.remove('proj-10');
+            petContainer.childNodes[i].classList.remove('selected');
         }
     }
     return (

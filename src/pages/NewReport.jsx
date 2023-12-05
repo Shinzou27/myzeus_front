@@ -1,13 +1,14 @@
 import Container from "react-bootstrap/esm/Container";
 import ReportForm from "../components/Report/ReportForm";
 import Message from "../components/Fixed/Message";
-import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../context/useAuth";
+import '../styles/AppForm.css'
 
 function NewReport() {
     document.title = 'Meu Zeus | Novo relatório'
-    const user = JSON.parse(window.localStorage.getItem('user'));
+    const {loggedUser, updateReports} = useAuth();
     const nav = useNavigate();
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState('');
@@ -28,16 +29,18 @@ function NewReport() {
             handleVerify(brand.replace(' ', '').replace(' ', '').length > 0, 'Nome de marca inválido.') &&
             handleVerify(amount > 0, 'Quantidade inválida.') &&
             handleVerify(petId, 'Pet inválido.');
-            
+
+        
         if (allowance) {
-            api.post(`/reports?id=${user.id}`, {
+            const report = {
                 date: date.toISOString(),
                 cost: cost,
                 brand: brand,
                 amount: amount,
-                userId: user.id,
+                userId: loggedUser.id,
                 petId: petId
-            }).then((response) => {
+            }
+            updateReports(report, (response) => {
                 setMessage(response.data.message);
                 setType(response.data.type);
                 setShow(true);
@@ -46,7 +49,7 @@ function NewReport() {
                         nav('/')
                     }, 3000);
                 }
-            });
+            })
         }
     }
     function handleVerify(statement, message) {
@@ -58,7 +61,7 @@ function NewReport() {
     }
     return (
         <>
-            <Container className="my-5">
+            <Container className="my-5 new-report">
                 <Container>
                     <h1>Adicionar relatório</h1>
                 </Container>

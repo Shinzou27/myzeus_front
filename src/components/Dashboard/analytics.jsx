@@ -41,8 +41,9 @@ export function getCostRange(reports) {
             value: 0
         }
     }
+    console.log(grouped);
     reports.forEach((r) => {
-        grouped.find((i) => i.limit > parseFloat(r.cost.replace(',', '.'))).value++;
+        grouped.find((i) => i.limit >= parseFloat(r.cost.replace(',', '.'))).value++;
     });
 
     return grouped;

@@ -1,4 +1,5 @@
 import Container from "react-bootstrap/esm/Container";
+import { Alert } from "react-bootstrap";
 import ReportForm from "../components/Report/ReportForm";
 import Message from "../components/Fixed/Message";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +9,7 @@ import '../styles/AppForm.css'
 
 function NewReport() {
     document.title = 'Meu Zeus | Novo relatório'
-    const {loggedUser, updateReports} = useAuth();
+    const {pets, loggedUser, updateReports} = useAuth();
     const nav = useNavigate();
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState('');
@@ -18,12 +19,13 @@ function NewReport() {
         const cost = document.getElementById('cost').value;
         const brand = document.getElementById('brand').value;
         const amount = parseInt(document.getElementById('amount').value.replace(',', '').replace('.', ''));
-        const petId = parseInt(document.getElementById('pet').options[document.getElementById('pet').options.selectedIndex].value);
+        const petId = parseInt(document.getElementById('pet').options[document.getElementById('pet').options.selectedIndex]?.value) | '';
         const allowance = handleVerify(!isNaN(date), 'Data inválida.') &&
             handleVerify(!(date.getFullYear() < 2010), 'Data antiga demais.') &&
             handleVerify(!(date.getTime() > new Date(Date('now')).getTime()), 'Datas futuras não podem ser inseridas.') &&
             handleVerify(cost != '', 'Custo inválido.') &&
-            handleVerify(!isNaN(parseFloat(cost.replace('.', ','))), 'Custo inválido.') &&
+            handleVerify(parseFloat(cost.replace('.', ',')) > 0, 'Insira um valor de custo positivo.') &&
+            handleVerify(!isNaN(parseFloat(cost.replace('.', ','))), 'Formato de custo inválido.') &&
             handleVerify(brand.length < 18, 'Nome de marca longo demais.') &&
             handleVerify(brand.length > 0, 'Nome de marca inválido.') &&
             handleVerify(brand.replace(' ', '').replace(' ', '').length > 0, 'Nome de marca inválido.') &&
@@ -47,9 +49,10 @@ function NewReport() {
                 if (response.data.type === 'success') {
                     setTimeout(() => {
                         nav('/')
+                        window.location.reload();
                     }, 3000);
                 }
-            })
+            }, 'post')
         }
     }
     function handleVerify(statement, message) {
@@ -67,6 +70,10 @@ function NewReport() {
                 </Container>
                 <Message show={show} txt={message} type={type} />
                 <ReportForm handler={handlePost} />
+                {pets.length == 0 && <Alert className="my-1" variant="primary">Vimos que você não tem nenhum pet adicionado... <span className="c-pointer" onClick={() => {
+                    nav('/newpet')
+                    window.location.reload();
+                    }}>Adicione seus pets</span> para poder criar novos relatórios!</Alert>}
             </Container>
         </>
     );

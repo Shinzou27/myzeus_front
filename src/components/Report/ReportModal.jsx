@@ -5,22 +5,24 @@ import { api } from '../../services/api';
 import { useAuth } from '../../context/useAuth';
 
 function ReportModal({ report, pet, show, handleClose, type }) {
-    const {pets} = useAuth();
+    const {pets, updateReports} = useAuth();
     function handleEdit() {
         const newDate = new Date(document.getElementById('newDate').value).toISOString();
         const newCost = document.getElementById('newCost').value;
         const newBrand = document.getElementById('newBrand').value;
         const newAmount = parseInt(document.getElementById('newAmount').value);
         const newPetId = parseInt(document.getElementById('newPet').options[document.getElementById('newPet').options.selectedIndex].value);
-        api.put(`/reports/${report.id}`, {
+        const newReport = {
+            id: report.id,
             date: newDate,
             cost: newCost,
             brand: newBrand,
             amount: newAmount,
             petId: newPetId
-        }).then((response) => {
+        }
+        updateReports(newReport, () => {
             window.location.reload();
-        })
+        }, 'put')
     }
     function handleDelete() {
         api.delete(`/reports/${report.id}`).then(() => {

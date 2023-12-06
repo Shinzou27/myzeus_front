@@ -34,11 +34,11 @@ export const UserContextProvider = ({ children }) => {
             const reports = await api.get(`/reports?id=${id}`)
             ls.setItem('reports', JSON.stringify(reports.data));
             setReports('reports', reports);
-            
+
             const pets = await api.get(`/pets?id=${id}`)
             ls.setItem('pets', JSON.stringify(pets.data));
             setPets('pets', pets);
-            
+
             api.defaults.headers['Authorization'] = `Bearer ${authData.token}`
             return {
                 user: authData.username,
@@ -52,19 +52,35 @@ export const UserContextProvider = ({ children }) => {
             };
         }
     }
-    async function updateReports(report, callback) {
-        if(report) {
-            await api.post(`/reports?id=${loggedUser.id}`, report).then(callback);
+    async function updateReports(report, callback, method) {
+        if (report) {
+            if(method == 'post') {
+                await api.post(`/reports?id=${loggedUser.id}`, report).then(callback);
+            } else if (method == 'put') {
+                await api.put(`/reports/${report.id}`, report).then(callback);
+            } else {
+                await api.delete(`/reports/${report.id}`).then(callback);
+            }
         }
-        const response = await api.get(`/reports?id=${loggedUser.id}`);
-        ls.setItem('reports', JSON.stringify(response.data));
+        await api.get(`/reports?id=${loggedUser.id}`).then((response) => {
+            ls.removeItem('reports');
+            ls.setItem('reports', JSON.stringify(response.data));
+        });
     }
-    async function updatePets(pet, callback) {
-        if(pet) {
-            await api.post(`/pets?id=${loggedUser.id}`, pet).then(callback)
+    async function updatePets(pet, callback, method) {
+        if (pet) {
+            if(method == 'post') {
+                await api.post(`/pets?id=${loggedUser.id}`, pet).then(callback)
+            } else if (method == 'put') {
+                await api.put(`/pets/${pet.id}`, pet).then(callback)
+            } else {
+                await api.delete(`/pets/${pet.id}`).then(callback)
+            }
         }
-        const response = await api.get(`/pets?id=${loggedUser.id}`);
-        ls.setItem('pets', JSON.stringify(response.data));
+        await api.get(`/pets?id=${loggedUser.id}`).then((response) => {
+            ls.removeItem('pets');
+            ls.setItem('pets', JSON.stringify(response.data));
+        });
     }
     useEffect(() => {
         const authData = JSON.parse(ls.getItem('user'));

@@ -5,7 +5,7 @@ function PetForm({handler}) {
         e.preventDefault();
     }
     return ( 
-        <Form onSubmit={submit} method="post" className="mt-5 w-50 m-auto">
+        <Form onSubmit={submit} method="post" className="mt-5 w-50 mx-auto">
             <Form.Group as={Row}>
                 <Form.Label column>Nome:</Form.Label>
                 <Col>

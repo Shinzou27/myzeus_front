@@ -18,12 +18,9 @@ function PetModal({ show, handleClose }) {
         setContextReports(null);
         setState(true);
         handleClose();
-        window.reload();
     }
-    function removePet() {
-        api.delete(`/pets/${pet.id}`).then(() => window.location.reload());
-        updatePets();
-        updateReports();
+    async function removePet() {
+        await api.delete(`/pets/${pet.id}`);
         exitModal();
     }
     function toggleButton() {

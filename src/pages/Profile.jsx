@@ -1,6 +1,5 @@
 import { Button, Container, Image } from "react-bootstrap";
 import placeholder from '../assets/placeholder.jpeg';
-import { useNavigate } from "react-router-dom";
 import PasswordModal from "../components/User/PasswordModal";
 import PetModal from "../components/Pet/PetModal";
 import PetCarousel from "../components/Pet/PetCarousel";
@@ -11,7 +10,7 @@ import { useAuth } from "../context/useAuth";
 import Message from '../components/Fixed/Message'
 
 function Profile() {
-    const { loggedUser, logout, pets } = useAuth();
+    const { loggedUser, logout, pets, updatePets, updateReports } = useAuth();
     document.title = 'Meu Zeus | Perfil';
     const [showPasswordModal, setShowPasswordModal] = useState(false);
     const [showPetModal, setShowPetModal] = useState(false);
@@ -43,8 +42,11 @@ function Profile() {
     function handleShowPasswordModal() {
         setShowPasswordModal(true);
     }
-    function handleClosePetModal() {
-        setShowPetModal(false)
+    async function handleClosePetModal() {
+        setShowPetModal(false);
+        await updatePets();
+        await updateReports();
+        window.location.reload();
     }
     function handleShowPetModal() {
         setShowPetModal(true);

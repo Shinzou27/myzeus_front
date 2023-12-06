@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import { useAuth } from "../context/useAuth"
 
 function Overview() {
-    const { loggedUser, reports, pets } = useAuth();
+    const { reports, pets } = useAuth();
     document.title = 'Meu Zeus | Visão Geral';
     const [limits, setLimits] = useState({ start: new Date('2000-01-01'), end: new Date('2099-12-31') });
     const [data, setData] = useState([]);

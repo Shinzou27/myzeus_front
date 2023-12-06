@@ -1,7 +1,7 @@
 .proj-10 {
     font-weight: bold;
-    background-color: #ebb915!important;
-    border-color: #ebb915!important;
+    background-color: #ebc75e!important;
+    border-color: #ebc75e!important;
 }
 .proj-10:hover {
     transition: .3s;
@@ -16,15 +16,15 @@
 
 .proj-30 {
     font-weight: bold;
-    background-color: #00f391!important;
-    border-color: #00f391!important;
+    background-color: #6e85eb!important;
+    border-color: #6e85eb!important;
 }
 .proj-30:hover {
     transition: .3s;
-    background-color: #17cb83!important;
-    border-color: #17cb83!important;
+    background-color: #445396!important;
+    border-color: #445396!important;
 }
 .proj-30:active {
-    background-color: #35ca8e!important;
-    border-color: #35ca8e!important;
+    background-color: #445396!important;
+    border-color: #445396!important;
 }

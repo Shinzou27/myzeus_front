@@ -11,7 +11,7 @@
 
 #edit:hover, #delete:hover {
   transition: .3s;
-  color: #ebb915!important;
+  color: #ebc75e!important;
 }
 
 .filter-button {
@@ -40,5 +40,5 @@
 }
 
 .table-arrow-current {
-  color: #ebb915!important;
+  color: #ebc75e!important;
 }

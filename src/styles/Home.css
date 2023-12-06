@@ -14,7 +14,7 @@
 
 .welcome h1,
 .welcome p {
-  background-color: #f0ffeb;
+  background-color: #ebebff;
   border-radius: 10px;
   width: fit-content;
   margin: 5px auto;
@@ -38,11 +38,11 @@
   flex-wrap: wrap;
   justify-content: center;
   border-radius: 15px;
-  border: 3px solid #ebb915;
+  border: 3px solid #ebc75e;
 }
 .pet-card {
   margin: 1vh 0vw;
-  border: 3px solid #00a764;
+  border: 3px solid #6e85eb;
   min-height: 33vh;
 }
 
@@ -77,5 +77,5 @@
 }
 .app-img {
   border-radius: 20px;
-  border: 3px solid white;
+  border: 3px solid #ffffff;
 }

@@ -1,6 +1,6 @@
 .bg-1 {
-  background: rgb(0, 243, 145);
-  background: linear-gradient(90deg, rgba(0, 243, 145, 0) 0%, rgba(93, 253, 188, 0) 50%, rgba(116, 255, 199, 1) 80%, rgba(116, 255, 199, 1) 90%, rgba(0, 243, 145, 1) 100%);
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%, #a2b1f180 50%, rgba(132,151,235,1) 70%, rgba(110,133,235,1) 100%);
   position: absolute;
   top: 0;
   z-index: -1;
@@ -25,7 +25,10 @@
 }
 
 .bg-icon {
-  position: absolute;
-  top: 10vh;
-  left: 90vw;
+  position: static;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
 }

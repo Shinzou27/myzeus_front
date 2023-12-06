@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/esm/Container';
 import Nav from 'react-bootstrap/Nav';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logos/mz_13.png';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image'
 import { useNavigate } from 'react-router-dom';

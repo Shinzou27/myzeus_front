@@ -1,5 +1,5 @@
 .dashboard-container {
-  border: 1px solid #00f391;
+  border: 1px solid #6e85eb;
   border-radius: 10px;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .dashboard-summary span {
-  background-color: #ebb915;
+  background-color: #ebc75e;
   color: #000;
 }
 

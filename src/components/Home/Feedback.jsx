@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Image } from "react-bootstrap";
-import app_icon from '../../assets/app_icon.png'
+import app_icon from '../../assets/logos/mz_15.png'
 
 function Feedback() {
     return (

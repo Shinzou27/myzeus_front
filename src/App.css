@@ -5,23 +5,23 @@
   text-align: center;
 }
 .proj-10-bg {
-  background-color: #ebb915;
+  background-color: #ebc75e;
 }
 .proj-10-txt {
-  color: #ebb915;
+  color: #ebc75e;
 }
 .proj-30-bg {
-  background-color: #00f391;
+  background-color: #6e85eb;
 }
 .proj-30-txt {
-  color: #00f391;
+  color: #6e85eb;
 }
 .c-pointer {
   cursor: pointer;
 }
 
 span {
-  background-color: #00f391;
+  background-color: #6e85eb;
   padding: 0px 5px;
   margin: 0px 5px;
   border-radius: 5px;

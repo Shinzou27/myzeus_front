@@ -29,6 +29,10 @@
   margin-top: 10px;
 }
 
+.dashboard-redirect p {
+  margin: 0;
+}
+
 .dashboard-chart {
   height: 60vh;
   margin-bottom: 10px;

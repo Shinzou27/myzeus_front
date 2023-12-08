@@ -58,8 +58,10 @@ export const UserContextProvider = ({ children }) => {
                 await api.post(`/reports?id=${loggedUser.id}`, report).then(callback);
             } else if (method == 'put') {
                 await api.put(`/reports/${report.id}`, report).then(callback);
-            } else {
+            } else if (method == 'delete') {
                 await api.delete(`/reports/${report.id}`).then(callback);
+            } else {
+                alert('Função desconhecida.');
             }
         }
         await api.get(`/reports?id=${loggedUser.id}`).then((response) => {

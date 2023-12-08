@@ -5,7 +5,7 @@ import FoodTable from '../Table/FoodTable'
 import { api } from "../../services/api";
 
 function PetModal({ show, handleClose }) {
-    const { pets, reports, updatePets, updateReports } = useAuth();
+    const { pets, reports } = useAuth();
     const [pet, setPet] = useState();
     const [contextReports, setContextReports] = useState();
     const [state, setState] = useState(true);
@@ -35,7 +35,7 @@ function PetModal({ show, handleClose }) {
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
-                            <label className='fw-bold'>Nome:</label>
+                            <label className='fw-bold'>Nome: </label>
                             <p>{pet.name}</p>
                         </Row>
                         <Row>

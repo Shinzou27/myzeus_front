@@ -1,34 +1,35 @@
+.bg-1, .bg-2 {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100%;
+  max-width: 100%;
+}
 .bg-1 {
   background: rgb(255,255,255);
   background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%, #a2b1f180 50%, rgba(132,151,235,1) 70%, rgba(110,133,235,1) 100%);
-  position: absolute;
-  top: 0;
-  z-index: -1;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  max-height: 100%;
-  max-width: 100%;
 }
 
-.bg-2 {
-  background: rgb(0, 203, 105);
-  background: linear-gradient(90deg, rgba(0, 203, 105, 1) 0%, rgba(43, 233, 158, 1) 30%, rgb(59, 218, 154) 50%, rgba(43, 233, 158, 1) 70%, rgba(0, 203, 105, 1) 100%);
-  position: absolute;
-  top: 100vh;
-  z-index: -1;
-  left: 0;
-  width: 100vw;
-  height: 240vh;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.bg-icon {
+.bg-1-icon {
   position: static;
   top: 0;
   right: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+.bg-2-icon {
+  position: static;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+.reverse {
+  transform: scaleX(-1);
 }

@@ -3,13 +3,13 @@ import TableFilter from "../components/Table/TableFilter"
 import FoodTable from "../components/Table/FoodTable"
 import ReportModal from "../components/Report/ReportModal"
 import Button from "react-bootstrap/esm/Button"
-import { api } from "../services/api"
+import { Eraser } from "react-bootstrap-icons"
 
 import { useEffect, useState } from "react"
 import { useAuth } from "../context/useAuth"
 
 function Overview() {
-    const { reports, pets } = useAuth();
+    const { reports, pets, updateReports } = useAuth();
     document.title = 'Meu Zeus | Visão Geral';
     const [limits, setLimits] = useState({ start: new Date('2000-01-01'), end: new Date('2099-12-31') });
     const [data, setData] = useState([]);
@@ -21,7 +21,7 @@ function Overview() {
     const [show, setShow] = useState(false);
     const [sorter, setSorter] = useState('');
     function handleClose() {
-        setShow(false)
+        setShow(false);
     };
     function handleShow() {
         setShow(true)
@@ -68,6 +68,7 @@ function Overview() {
         sorter.includes('desc') ? setData(aux.reverse()) : setData(aux);
     }, [limits, filteredPets, sorter]);
     useEffect(() => {
+        updateReports();
         setFixedData(reports.sort(sortDate));
         setData(reports.sort(sortDate));
     }, []);
@@ -112,7 +113,7 @@ function Overview() {
             </Container>
             <Container>
                 <TableFilter handleClick={dateInterval} handlePet={filterPet} />
-                <Button onClick={resetFilters} variant="danger" className="mb-2 filter-button">Limpar filtros</Button>
+                <Button onClick={resetFilters} variant="danger" className="mb-2 fw-bold filter-button">Limpar filtros <Eraser/></Button>
                 <FoodTable data={data} handleModal={showModal} setModalType={setModalType} sorter={sorter} setSorter={setSorter} />
             </Container>
         </Container>

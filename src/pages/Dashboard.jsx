@@ -8,7 +8,6 @@ function Dashboard() {
     document.title = 'Meu Zeus | Painel de Controle'
     return (
         <Container className="pt-5 w-100">
-            <h1>Painel de Controle</h1>
             <Row>
                 <Col md={4}>
                     <UserSummary />

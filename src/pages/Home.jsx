@@ -8,13 +8,13 @@ function Home() {
   document.title = 'Meu Zeus | Início';
   return (
     <Container>
-      <Background color={'1'}/>
-      <div className='full-screen'>
+      <Background type={'1'}/>
+      <Container className='full-screen'>
         <Welcome />
-      </div>
-      <div className='full-screen'>
+      </Container>
+      <Container className='full-screen'>
         <Feedback />
-      </div>
+      </Container>
     </Container>
   )
 }

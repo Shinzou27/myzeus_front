@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/esm/Container';
 import { useAuth } from '../../context/useAuth';
+import { Funnel } from 'react-bootstrap-icons';
 
 function TableFilter({ handleClick, handlePet }) {
     const {pets} = useAuth();
@@ -21,11 +22,11 @@ function TableFilter({ handleClick, handlePet }) {
         <Container className='m-auto w-50'>
             <Row>
                 <Col>
-                    <Row><h6>Início</h6></Row>
+                    <Row><h6 className='fw-bold'>Início</h6></Row>
                     <Row><input className='border-0 w-75 m-auto' type="date" id="start" /></Row>
                 </Col>
                 <Col>
-                    <Row><h6>Fim</h6></Row>
+                    <Row><h6 className='fw-bold'>Fim</h6></Row>
                     <Row><input className='border-0 w-75 m-auto' type="date" id="end" /></Row>
                 </Col>
             </Row>
@@ -35,7 +36,7 @@ function TableFilter({ handleClick, handlePet }) {
                     <Col className='pet-button proj-30 unselected' key={pet.id} onClick={(e) => sendPets(e, pet.id)}>{pet.name}</Col>
                 ))}
             </Row>
-            <Button onClick={sendDates} className='my-2 proj-30 filter-button'>Filtrar</Button>
+            <Button onClick={sendDates} className='my-2 proj-30 filter-button'>Filtrar <Funnel/></Button>
         </Container>
     );
 }

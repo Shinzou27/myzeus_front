@@ -8,6 +8,7 @@ import { api } from "../services/api";
 import '../styles/Profile.css'
 import { useAuth } from "../context/useAuth";
 import Message from '../components/Fixed/Message'
+import Background from '../components/Fixed/Background'
 
 function Profile() {
     const { loggedUser, logout, pets, updatePets, updateReports } = useAuth();
@@ -53,6 +54,7 @@ function Profile() {
     }
     return (
         <Container className="profile">
+            <Background type={'2'}/>
             <PasswordModal user={loggedUser} show={showPasswordModal} handleClose={handleClosePasswordModal} updatePassword={updatePassword} />
             <PetModal show={showPetModal} handleClose={handleClosePetModal} />
             <h1>Perfil de {loggedUser.username}</h1>

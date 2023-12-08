@@ -28,11 +28,12 @@
 
 .welcome-button {
   width: 140px;
+  margin: 1vh;
 }
 
 
 .feedback-left {
-  height: 33vh;
+  height: 36vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -40,25 +41,26 @@
   border-radius: 15px;
   border: 3px solid #ebc75e;
 }
+
 .pet-card {
   margin: 1vh 0vw;
   border: 3px solid #6e85eb;
-  min-height: 33vh;
+  min-height: 36vh;
 }
 
 .pet-name {
-  padding-top: 15px;
-  font-size: 1.2rem;
+  padding-top: 1.5vh;
+  font-size: 3vh;
   font-weight: bold;
 }
 .pet-owner {
   font-style: italic;
   font-weight: lighter;
-  font-size: 1rem;
+  font-size: 2.4vh;
 }
 .feedback-desc {
   height: 20vh;
-  font-size: 0.9rem;
+  font-size: 2vh;
   display: flex;
   flex-wrap: wrap;
   align-content: center;

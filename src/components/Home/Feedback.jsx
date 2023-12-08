@@ -28,7 +28,7 @@ function Feedback() {
                 </Col>
                 <Col md={3}>
                     <Card className="pet-card">
-                        <Card.Title className="pet-name">Zeus (Pastor Alemão)</Card.Title>
+                        <Card.Title className="pet-name">Zeus (Peixe)</Card.Title>
                         <Card.Body className="feedback-desc">"Acabou a criatividade. Não tenho mais o que escrever. Só tô aqui porque preciso ser um placeholder um pouco maior!"</Card.Body>
                         <Card.Footer className="pet-owner">Fulano III, Caucaia - CE</Card.Footer>
                     </Card>

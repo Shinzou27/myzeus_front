@@ -17,10 +17,10 @@ function Welcome() {
                         <div>
                             <Row>
                                 <Col>
-                                    <Button className='proj-30'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/new'}>Adicionar novo relatório</Link></Button>
+                                    <Button className='proj-30'><Link style={{ textDecoration: 'none' }} className='text-white welcome-button' to={'/new'}>Adicionar novo relatório</Link></Button>
                                 </Col>
                                 <Col>
-                                    <Button className='proj-30'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/overview'}>Ver lista de relatórios</Link></Button>
+                                    <Button className='proj-30'><Link style={{ textDecoration: 'none' }} className='text-white welcome-button' to={'/overview'}>Ver lista de relatórios</Link></Button>
                                 </Col>
                             </Row>
                         </div>
@@ -29,8 +29,8 @@ function Welcome() {
                         <h1>Bem-vindo!</h1>
                         <p>Entre ou crie sua conta agora mesmo!</p>
                         <Container>
-                            <Button className='proj-30 mx-2'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/login'}>Entrar</Link></Button>
-                            <Button className='proj-30 mx-2'><Link style={{ textDecoration: 'none' }} className='text-white' to={'/register'}>Criar conta</Link></Button>
+                            <Button className='proj-30 mx-2'><Link style={{ textDecoration: 'none' }} className='text-white welcome-button' to={'/login'}>Entrar</Link></Button>
+                            <Button className='proj-30 mx-2'><Link style={{ textDecoration: 'none' }} className='text-white welcome-button' to={'/register'}>Criar conta</Link></Button>
                         </Container>
                     </>
                 }

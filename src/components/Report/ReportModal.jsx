@@ -1,7 +1,6 @@
 import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/esm/Button';
-import { api } from '../../services/api';
 import { useAuth } from '../../context/useAuth';
 import { useNavigate } from 'react-router-dom';
 

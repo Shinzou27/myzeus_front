@@ -18,10 +18,16 @@ export const UserContextProvider = ({ children }) => {
         ls.removeItem('pets');
         setLoggedUser(null);
     }
-    async function login(username, password) {
+    async function login(username, password, firstTime) {
         const credentials = { username: username, password: password };
         try {
-            const response = await api.post('/login', credentials)
+            let route;
+            if (firstTime) {
+                route = '/users'
+            } else {
+                route = '/login'
+            }
+            const response = await api.post(route, credentials)
             const { token, id, username, message } = response.data;
             const authData = {
                 token: token,
